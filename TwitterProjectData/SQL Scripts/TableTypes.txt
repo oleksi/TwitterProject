@@ -1,0 +1,5 @@
+﻿CREATE TYPE UserNamesType AS TABLE 
+( 
+	UserName NVARCHAR(255)
+);
+GO

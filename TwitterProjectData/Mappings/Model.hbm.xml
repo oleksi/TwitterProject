@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+                   assembly="TwitterProjectModel" 
+                   namespace="TwitterProjectModel">
+ 
+  <class name="Model" table="Models">
+		<id name="Id" column="ModelId">
+			<generator class="identity"></generator>
+		</id>
+		<property name="UserName" column="ModelUserName" not-null="true"></property>
+		<property name="TwitterConsumerKey" not-null="true"></property>
+		<property name="TwitterConsumerSecret" not-null="true"></property>
+		<property name="TwitterAccessToken" not-null="true"></property>
+		<property name="TwitterAccessTokenSecret" not-null="true"></property>
+		<property name="LiveChatURL" not-null="true"></property>
+		<property name="OnlineStatusXMLFeed" not-null="true"></property>
+	</class>
+  
+</hibernate-mapping>

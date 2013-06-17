@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+                   assembly="TwitterProjectModel" 
+                   namespace="TwitterProjectModel">
+ 
+  <class name="MonitorUser" table="MonitorUsers">
+		<id name="Id" column="MonitorUserId">
+			<generator class="identity"></generator>
+		</id>
+		<property name="UserName" column="MonitorUserName" not-null="true"></property>
+		<property name="LastMonitorDate" not-null="true"></property>
+		<property name="IsActive" not-null="true"></property>
+	</class>
+  
+</hibernate-mapping>

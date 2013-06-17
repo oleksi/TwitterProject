@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+                   assembly="TwitterProjectModel" 
+                   namespace="TwitterProjectModel">
+ 
+  <class name="FriendProspect" table="FriendProspects">
+		<id name="Id" column="FriendProspectId">
+			<generator class="identity"></generator>
+		</id>
+		<property name="UserName" column="FriendProspectUserName" not-null="true"></property>
+		<property name="InsertDate" not-null="true"></property>
+		<property name="LastActivityDate" not-null="true"></property>
+		<many-to-one class="MonitorUser" name="ReferredBy" column="ReferredById" not-null="true" />
+	</class>
+  
+</hibernate-mapping>

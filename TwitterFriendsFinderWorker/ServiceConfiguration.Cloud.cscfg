@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="TwitterFriendsFinderWorker" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2013-03.2.0">
+  <Role name="TwitterProjectWorkerRole">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=twitterproject;AccountKey=V1vUbvp/Uhz+sH4xU3U5IRjaU/0wUQHcj7QYBeMOq19VVViwQ7SDpmYOAVry3X7RQ61IB2gMAlNZWlK1Gwvtiw==" />
+      <Setting name="ModelId" value="1" />
+      <Setting name="FriendFinder_MinutesToWaitMin" value="5" />
+      <Setting name="FriendFinder_MinutesToWaitMax" value="25" />
+      <Setting name="FriendFinder_MaxFolloewersCount" value="150" />
+      <Setting name="FriendFinder_FollowersFriendsProportion" value="0.15" />
+      <Setting name="RegularPost_NoShowStartTime" value="3:00 AM" />
+      <Setting name="RegularPost_NoShowEndTime" value="8:00 AM" />
+      <Setting name="RegularPost_NextPublishMinMinute" value="60" />
+      <Setting name="RegularPost_NextPublishMaxMinute" value="180" />
+      <Setting name="OnlinePost_CheckOnlineStatusIntervalMins" value="10" />
+      <Setting name="OnlinePost_OnlinePostsIntervalMins" value="180" />
+      <Setting name="FollowFriend_FollowIntervalMinMinutes" value="8" />
+      <Setting name="FollowFriend_FollowIntervalMaxMinutes" value="16" />
+      <Setting name="FollowFriend_UnfollowIntervalMinMinutes" value="15" />
+      <Setting name="FollowFriend_UnfollowIntervalMaxMinutes" value="30" />
+      <Setting name="FriendFinderTask" value="true" />
+      <Setting name="RegularPostUpdateTask" value="true" />
+      <Setting name="OnlinePostUpdateTask" value="true" />
+      <Setting name="FollowFriendProspectsTask" value="false" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

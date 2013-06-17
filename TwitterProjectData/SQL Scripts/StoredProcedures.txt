@@ -1,0 +1,50 @@
+﻿/****** Object:  StoredProcedure [dbo].[usp_AddFriendProspects]    Script Date: 5/23/2013 11:22:43 PM ******/
+DROP PROCEDURE [dbo].[usp_AddFriendProspects]
+GO
+
+/****** Object:  StoredProcedure [dbo].[usp_AddFriendProspects]    Script Date: 5/23/2013 11:22:43 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[usp_AddFriendProspects]
+    @UserNames UserNamesType READONLY,
+	@ReferredById int
+AS 
+Begin
+	SET NOCOUNT ON
+
+	declare cur cursor for select UserName from @UserNames
+	declare @currUserName varchar(255)
+
+	open cur
+
+	fetch next from cur into @currUserName
+	while @@FETCH_STATUS = 0
+	begin
+		if exists(select * from FriendProspects where FriendProspectUserName = @currUserName) begin
+			update FriendProspects
+			set LastActivityDate = getdate()
+			where FriendProspectUserName = @currUserName
+		end
+		else begin
+			INSERT INTO [dbo].[FriendProspects]
+           ([FriendProspectUserName]
+           ,[InsertDate]
+		   ,[LastActivityDate]
+		   ,[ReferredById])
+			values (@currUserName, getdate(), getdate(), @ReferredById)
+		end
+
+		fetch next from cur into @currUserName
+	end 
+	
+	close cur
+	deallocate cur
+
+End
+GO

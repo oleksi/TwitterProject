@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="TwitterFriendsFinderWorker" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-03.2.0">
+  <WorkerRole name="TwitterProjectWorkerRole" vmsize="Small">
+    <Imports>
+      <Import moduleName="Diagnostics" />
+    </Imports>
+    <ConfigurationSettings>
+      <Setting name="ModelId" />
+      <Setting name="FriendFinder_MinutesToWaitMin" />
+      <Setting name="FriendFinder_MinutesToWaitMax" />
+      <Setting name="FriendFinder_MaxFolloewersCount" />
+      <Setting name="FriendFinder_FollowersFriendsProportion" />
+      <Setting name="RegularPost_NoShowStartTime" />
+      <Setting name="RegularPost_NoShowEndTime" />
+      <Setting name="RegularPost_NextPublishMinMinute" />
+      <Setting name="RegularPost_NextPublishMaxMinute" />
+      <Setting name="OnlinePost_CheckOnlineStatusIntervalMins" />
+      <Setting name="OnlinePost_OnlinePostsIntervalMins" />
+      <Setting name="FollowFriend_FollowIntervalMinMinutes" />
+      <Setting name="FollowFriend_FollowIntervalMaxMinutes" />
+      <Setting name="FollowFriend_UnfollowIntervalMinMinutes" />
+      <Setting name="FollowFriend_UnfollowIntervalMaxMinutes" />
+      <Setting name="FriendFinderTask" />
+      <Setting name="RegularPostUpdateTask" />
+      <Setting name="OnlinePostUpdateTask" />
+      <Setting name="FollowFriendProspectsTask" />
+    </ConfigurationSettings>
+  </WorkerRole>
+</ServiceDefinition>

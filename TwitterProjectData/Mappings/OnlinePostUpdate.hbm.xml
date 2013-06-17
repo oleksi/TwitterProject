@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+                   assembly="TwitterProjectModel" 
+                   namespace="TwitterProjectModel">
+ 
+  <class name="OnlinePostUpdate" table="OnlinePostUpdates">
+		<id name="Id" column="OnlinePostUpdateId">
+			<generator class="identity"></generator>
+		</id>
+		<property name="PostText" not-null="true"></property>
+	</class>
+  
+</hibernate-mapping>
