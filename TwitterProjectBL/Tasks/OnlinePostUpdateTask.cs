@@ -81,6 +81,11 @@ namespace TwitterProjectBL.Tasks
 
 				//publishing online status message
 				m_TwitterService.SendTweet(new SendTweetOptions() { Status = twitterMessage });
+
+				TwitterError error = m_TwitterService.Response.Error;
+				if (error != null)
+					throw new ApplicationException(error.ToString());
+
 				m_DataRepository.LogPostUpdateAsPublishedForModel(newPostUpdate, m_Model, PostUpdateType.Online);
 
 				m_IsCurrentlyOnline = true;

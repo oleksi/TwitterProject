@@ -45,6 +45,10 @@ namespace TwitterProjectBL.Tasks
 				SearchOptions so = new SearchOptions() { Q = String.Format("@{0}", nextMontiroUser.UserName), Count = 100, Resulttype = TwitterSearchResultType.Recent };
 				TwitterSearchResult sr = m_TwitterService.Search(so);
 
+				TwitterError error = m_TwitterService.Response.Error;
+				if (error != null)
+					throw new ApplicationException(error.ToString());
+
 				//retrieving a list of friend prospects
 				List<TwitterStatus> twitterStatuses = sr.Statuses.Where(st => st.Text.Contains("RT") == false &&
 																		st.User != null &&

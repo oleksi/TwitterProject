@@ -67,6 +67,11 @@ namespace TwitterProjectBL.Tasks
 		{
 			PostUpdate newPostUpdate = m_DataRepository.GetNextPostUpdateForModel(m_Model, PostUpdateType.Regular);
 			m_TwitterService.SendTweet(new SendTweetOptions() { Status = newPostUpdate.PostText });
+
+			TwitterError error = m_TwitterService.Response.Error;
+			if (error != null)
+				throw new ApplicationException(error.ToString());
+
 			m_DataRepository.LogPostUpdateAsPublishedForModel(newPostUpdate, m_Model, PostUpdateType.Regular);
 		}
 	}

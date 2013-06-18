@@ -37,7 +37,7 @@ namespace TwitterProjectWorkerRole
 						}
 						catch (Exception ex)
 						{
-							Trace.TraceError(ex.InnerException.ToString());
+							Trace.TraceError(ex.ToString());
 						}
 						finally
 						{
