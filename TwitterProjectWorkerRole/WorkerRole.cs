@@ -104,15 +104,28 @@ namespace TwitterProjectWorkerRole
 
 			if (Convert.ToBoolean(RoleEnvironment.GetConfigurationSettingValue("FollowFriendProspectsTask")) == true)
 			{
-				FollowFriendProspectsTask followFriendProspects = new FollowFriendProspectsTask(
+				FollowFriendProspectsTask followFriendProspectsTask = new FollowFriendProspectsTask(
 																			new ModelRepository()
 																			, m_TwitterService
 																			, currentModel
 																			, Convert.ToInt32(RoleEnvironment.GetConfigurationSettingValue("FollowFriend_FollowIntervalMinMinutes"))
 																			, Convert.ToInt32(RoleEnvironment.GetConfigurationSettingValue("FollowFriend_FollowIntervalMaxMinutes"))
 															);
-				m_Tasks.Add(followFriendProspects);
+				m_Tasks.Add(followFriendProspectsTask);
 			}
+
+			if (Convert.ToBoolean(RoleEnvironment.GetConfigurationSettingValue("UnfollowFriendTask")) == true)
+			{
+				UnfollowFriendTask unfollowFriendTask = new UnfollowFriendTask(
+																			new ModelRepository()
+																			, m_TwitterService
+																			, currentModel
+																			, Convert.ToInt32(RoleEnvironment.GetConfigurationSettingValue("FollowFriend_UnfollowIntervalMinMinutes"))
+																			, Convert.ToInt32(RoleEnvironment.GetConfigurationSettingValue("FollowFriend_UnfollowIntervalMaxMinutes"))
+															);
+				m_Tasks.Add(unfollowFriendTask);
+			}
+
 
 			// Set the maximum number of concurrent connections 
 			ServicePointManager.DefaultConnectionLimit = 12;

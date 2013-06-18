@@ -57,6 +57,7 @@
     <Compile Include="Tasks\ITask.cs" />
     <Compile Include="Tasks\OnlinePostUpdateTask.cs" />
     <Compile Include="Tasks\RegularPostUpdateTask.cs" />
+    <Compile Include="Tasks\UnfollowFriendTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TwitterProjectData\TwitterProjectData.csproj">

@@ -56,5 +56,18 @@ namespace TwitterProjectData
 				}
 			}
 		}
+
+		public string GetNextFriendToUnfollowForModel(Model model)
+		{
+			string friendUserName = "";
+			using (var session = getSession())
+			{
+				ModelFriendsLog modelFriendsLog = session.QueryOver<ModelFriendsLog>().Where(mfl => mfl.Model.Id == model.Id).OrderBy(mfl => mfl.DateFriended).Asc.Take(1).SingleOrDefault();
+				if (modelFriendsLog != null)
+					friendUserName = modelFriendsLog.Friend.UserName;
+			}
+
+			return friendUserName;
+		}
 	}
 }

@@ -17,12 +17,13 @@
       <Setting name="OnlinePost_OnlinePostsIntervalMins" value="180" />
       <Setting name="FollowFriend_FollowIntervalMinMinutes" value="8" />
       <Setting name="FollowFriend_FollowIntervalMaxMinutes" value="16" />
-      <Setting name="FollowFriend_UnfollowIntervalMinMinutes" value="15" />
-      <Setting name="FollowFriend_UnfollowIntervalMaxMinutes" value="30" />
+      <Setting name="FollowFriend_UnfollowIntervalMinMinutes" value="10" />
+      <Setting name="FollowFriend_UnfollowIntervalMaxMinutes" value="20" />
       <Setting name="FriendFinderTask" value="true" />
       <Setting name="RegularPostUpdateTask" value="true" />
       <Setting name="OnlinePostUpdateTask" value="true" />
       <Setting name="FollowFriendProspectsTask" value="false" />
+      <Setting name="UnfollowFriendTask" value="true" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>
