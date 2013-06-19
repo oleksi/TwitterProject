@@ -45,17 +45,17 @@ namespace TwitterProjectBL.Tasks
 
 		public void Run()
 		{
-			string friendUsername = m_DataRepository.GetNextFriendToUnfollowForModel(m_Model);
-			if (String.IsNullOrEmpty(friendUsername) == false)
+			ModelFriendsLog modelFriendsLog = m_DataRepository.GetNextFriendToUnfollowForModel(m_Model);
+			if (modelFriendsLog != null)
 			{
-				UnfollowUserOptions unfollowUserOptions = new UnfollowUserOptions() { ScreenName = friendUsername };
+				UnfollowUserOptions unfollowUserOptions = new UnfollowUserOptions() { ScreenName = modelFriendsLog.Friend.UserName };
 				m_TwitterService.UnfollowUser(unfollowUserOptions);
 
 				TwitterError error = m_TwitterService.Response.Error;
 				if (error != null)
 					throw new ApplicationException(error.ToString());
 
-				//not removing record from ModelFriendsLogs so we don't friend the same user again
+				m_DataRepository.LogFriendAsUnfollowedForModel(m_Model, modelFriendsLog);
 			}
 		}
 	}

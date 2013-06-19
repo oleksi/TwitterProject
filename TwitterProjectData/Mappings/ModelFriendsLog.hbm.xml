@@ -11,6 +11,7 @@
 		<many-to-one class="Model" name="Model" column="ModelId" not-null="true" />
 		<many-to-one class="FriendProspect" name="Friend" column="FriendId" not-null="true" />
 		<property name="DateFriended" not-null="true"></property>
+		<property name="IsActive" not-null="true"></property>
 	</class>
   
 </hibernate-mapping>

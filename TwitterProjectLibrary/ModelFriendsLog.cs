@@ -12,5 +12,6 @@ namespace TwitterProjectModel
 		public virtual Model Model { get; set; }
 		public virtual FriendProspect Friend { get; set; }
 		public virtual DateTime DateFriended { get; set; }
+		public virtual bool IsActive { get; set; }
 	}
 }

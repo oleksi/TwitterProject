@@ -40,6 +40,7 @@ namespace TwitterProjectData
 			using (var session = getSession())
 			{
 				var friendProspect = session.QueryOver<FriendProspect>().WhereRestrictionOn(fp => fp.Id).Not.IsIn(session.QueryOver<ModelFriendsLog>().Where(mfl => mfl.Model.Id == model.Id).Select(mfl => mfl.Friend.Id).List<int>().ToArray()).Take(1).SingleOrDefault();
+				string userName = friendProspect.ReferredBy.UserName; //need to prevent lazy initialization
 				return friendProspect;
 			}
 		}
@@ -50,24 +51,34 @@ namespace TwitterProjectData
 			{
 				using (var transaction = session.BeginTransaction())
 				{
-					var modelFriendsLog = new ModelFriendsLog() { Model = model, Friend = friendProspect, DateFriended = DateTime.Now };
+					var modelFriendsLog = new ModelFriendsLog() { Model = model, Friend = friendProspect, DateFriended = DateTime.Now, IsActive = true };
 					session.SaveOrUpdate(modelFriendsLog);
 					transaction.Commit();
 				}
 			}
 		}
 
-		public string GetNextFriendToUnfollowForModel(Model model)
+		public ModelFriendsLog GetNextFriendToUnfollowForModel(Model model)
 		{
-			string friendUserName = "";
 			using (var session = getSession())
 			{
-				ModelFriendsLog modelFriendsLog = session.QueryOver<ModelFriendsLog>().Where(mfl => mfl.Model.Id == model.Id).OrderBy(mfl => mfl.DateFriended).Asc.Take(1).SingleOrDefault();
-				if (modelFriendsLog != null)
-					friendUserName = modelFriendsLog.Friend.UserName;
+				ModelFriendsLog modelFriendsLog = session.QueryOver<ModelFriendsLog>().Where(mfl => mfl.Model.Id == model.Id && mfl.IsActive == true).OrderBy(mfl => mfl.DateFriended).Asc.Take(1).SingleOrDefault();
+				string userName = modelFriendsLog.Friend.UserName; //need to prevent lazy initialization
+				return modelFriendsLog;
 			}
+		}
 
-			return friendUserName;
+		public void LogFriendAsUnfollowedForModel(Model model, ModelFriendsLog modelExFriend)
+		{
+			using (var session = getSession())
+			{
+				using (var transaction = session.BeginTransaction())
+				{
+					modelExFriend.IsActive = false;
+					session.SaveOrUpdate(modelExFriend);
+					transaction.Commit();
+				}
+			}
 		}
 	}
 }
