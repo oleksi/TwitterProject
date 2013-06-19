@@ -18,6 +18,7 @@ namespace TwitterProjectBL.Tasks
 		private int m_FollowIntervalMinMinutes = 0;
 		private int m_FollowIntervalMaxMinutes = 0;
 		private DateTime m_NextRunningDate = DateTime.MinValue;
+		bool m_LastFollowWasUnseccessful = false;
 
 		public FollowFriendProspectsTask(ModelRepository dataRepository, TwitterService twitterService, Model model, int followIntervalMinMinutes, int followIntervalMaxMinutes)
 		{
@@ -37,11 +38,19 @@ namespace TwitterProjectBL.Tasks
 
 		public void SetNextRunningDate()
 		{
-			int minutesInterval = 0;
-			Random rnd = new Random(DateTime.Now.Millisecond);
-			minutesInterval = rnd.Next(m_FollowIntervalMinMinutes, m_FollowIntervalMaxMinutes);
+			if (m_LastFollowWasUnseccessful == false)
+			{
+				int minutesInterval = 0;
+				Random rnd = new Random(DateTime.Now.Millisecond);
+				minutesInterval = rnd.Next(m_FollowIntervalMinMinutes, m_FollowIntervalMaxMinutes);
 
-			m_NextRunningDate = DateTime.Now.AddMinutes(minutesInterval);
+				m_NextRunningDate = DateTime.Now.AddMinutes(minutesInterval);
+			}
+			else
+			{
+				//since last follow was unseccessful repeating in 2 mins
+				m_NextRunningDate = DateTime.Now.AddMinutes(2);
+			}
 		}
 
 		public void Run()
@@ -54,9 +63,23 @@ namespace TwitterProjectBL.Tasks
 
 				TwitterError error = m_TwitterService.Response.Error;
 				if (error != null)
-					throw new ApplicationException(error.ToString());
+				{
+					m_LastFollowWasUnseccessful = true;
+					if (error.Code == 159 || error.Code == 34 || error.Code == 108 || error.Code == 162) //user's account was suspened or page doesn't exist or can't find specified user or blocked by user
+					{
+						//logging it as inactive
+						m_DataRepository.LogFriendProspectAsFriendForModel(m_Model, nextFriendProspect, false);
+						return;
+					}
+					else
+					{
+						//some other error, throwing the exception
+						throw new ApplicationException(error.ToString());
+					}
+				}
 
-				m_DataRepository.LogFriendProspectAsFriendForModel(m_Model, nextFriendProspect);
+				m_DataRepository.LogFriendProspectAsFriendForModel(m_Model, nextFriendProspect, true);
+				m_LastFollowWasUnseccessful = false;
 			}
 		}
 	}

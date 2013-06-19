@@ -19,7 +19,7 @@ namespace TestConsoleClient
 			Model model = modelRepo.GetModelById(1);
 
 			FriendProspect nextFriendProspect = modelRepo.GetNextFriendProspectToFollowForModel(model);
-			modelRepo.LogFriendProspectAsFriendForModel(model, nextFriendProspect);
+			//modelRepo.LogFriendProspectAsFriendForModel(model, nextFriendProspect);
 
 		}
 	}

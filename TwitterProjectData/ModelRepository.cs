@@ -45,13 +45,13 @@ namespace TwitterProjectData
 			}
 		}
 
-		public void LogFriendProspectAsFriendForModel(Model model, FriendProspect friendProspect)
+		public void LogFriendProspectAsFriendForModel(Model model, FriendProspect friendProspect, bool isActive)
 		{
 			using (var session = getSession())
 			{
 				using (var transaction = session.BeginTransaction())
 				{
-					var modelFriendsLog = new ModelFriendsLog() { Model = model, Friend = friendProspect, DateFriended = DateTime.Now, IsActive = true };
+					var modelFriendsLog = new ModelFriendsLog() { Model = model, Friend = friendProspect, DateFriended = DateTime.Now, IsActive = isActive };
 					session.SaveOrUpdate(modelFriendsLog);
 					transaction.Commit();
 				}
