@@ -13,5 +13,6 @@ namespace TwitterProjectModel
 		public virtual DateTime InsertDate { get; set; }
 		public virtual DateTime LastActivityDate { get; set; }
 		public virtual MonitorUser ReferredBy { get; set; }
+		public virtual bool IsActive { get; set; }
 	}
 }

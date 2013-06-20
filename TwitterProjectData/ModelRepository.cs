@@ -39,7 +39,7 @@ namespace TwitterProjectData
 		{
 			using (var session = getSession())
 			{
-				var friendProspect = session.QueryOver<FriendProspect>().WhereRestrictionOn(fp => fp.Id).Not.IsIn(session.QueryOver<ModelFriendsLog>().Where(mfl => mfl.Model.Id == model.Id).Select(mfl => mfl.Friend.Id).List<int>().ToArray()).Take(1).SingleOrDefault();
+				var friendProspect = session.QueryOver<FriendProspect>().WhereRestrictionOn(fp => fp.Id).Not.IsIn(session.QueryOver<ModelFriendsLog>().Where(mfl => mfl.Model.Id == model.Id).Select(mfl => mfl.Friend.Id).List<int>().ToArray()).Where(fp => fp.IsActive == true).Take(1).SingleOrDefault();
 				string userName = friendProspect.ReferredBy.UserName; //need to prevent lazy initialization
 				return friendProspect;
 			}
@@ -76,6 +76,19 @@ namespace TwitterProjectData
 				{
 					modelExFriend.IsActive = false;
 					session.SaveOrUpdate(modelExFriend);
+					transaction.Commit();
+				}
+			}
+		}
+
+		public void LogFriendProdspectAsNotActive(FriendProspect friendProspect)
+		{
+			using (var session = getSession())
+			{
+				using (var transaction = session.BeginTransaction())
+				{
+					friendProspect.IsActive = false;
+					session.SaveOrUpdate(friendProspect);
 					transaction.Commit();
 				}
 			}

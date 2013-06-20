@@ -65,8 +65,15 @@ namespace TwitterProjectBL.Tasks
 				if (error != null)
 				{
 					m_LastFollowWasUnseccessful = true;
-					//159 = user's account was suspened; 34 = page doesn't exist; 108 = can't find specified user; 160 = already requested to follow, waiting for respones; 162 = blocked by user
-					if (error.Code == 159 || error.Code == 34 || error.Code == 108 || error.Code == 160 || error.Code == 162)
+					//159 = user's account was suspened; 34 = page doesn't exist; 108 = can't find specified user; 
+					if (error.Code == 159 || error.Code == 34 || error.Code == 108)
+					{
+						//marking as non-active
+						m_DataRepository.LogFriendProdspectAsNotActive(nextFriendProspect);
+						return;
+					}
+					//160 = already requested to follow, waiting for respones; 162 = blocked by user
+					else if (error.Code == 160 || error.Code == 162) //this theoretically should't happen; keeping this code for fixing what was messed up at the beginning
 					{
 						//logging it as inactive
 						m_DataRepository.LogFriendProspectAsFriendForModel(m_Model, nextFriendProspect, false);

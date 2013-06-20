@@ -12,6 +12,7 @@
 		<property name="InsertDate" not-null="true"></property>
 		<property name="LastActivityDate" not-null="true"></property>
 		<many-to-one class="MonitorUser" name="ReferredBy" column="ReferredById" not-null="true" />
+		<property name="IsActive" not-null="true"></property>
 	</class>
   
 </hibernate-mapping>

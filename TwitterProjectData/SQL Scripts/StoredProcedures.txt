@@ -28,7 +28,7 @@ Begin
 	begin
 		if exists(select * from FriendProspects where FriendProspectUserName = @currUserName) begin
 			update FriendProspects
-			set LastActivityDate = getdate()
+			set LastActivityDate = getdate(), IsActive = 1
 			where FriendProspectUserName = @currUserName
 		end
 		else begin
@@ -36,8 +36,9 @@ Begin
            ([FriendProspectUserName]
            ,[InsertDate]
 		   ,[LastActivityDate]
-		   ,[ReferredById])
-			values (@currUserName, getdate(), getdate(), @ReferredById)
+		   ,[ReferredById]
+		   ,[IsActive])
+			values (@currUserName, getdate(), getdate(), @ReferredById, 1)
 		end
 
 		fetch next from cur into @currUserName
