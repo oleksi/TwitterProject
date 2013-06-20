@@ -17,6 +17,7 @@ namespace TwitterProjectBL.Tasks
 		private int m_UnfollowIntervalMinMinutes = 0;
 		private int m_UnfollowIntervalMaxMinutes = 0;
 		private DateTime m_NextRunningDate = DateTime.MinValue;
+		bool m_LastUnfollowWasUnseccessful = false;
 
 		public UnfollowFriendTask(ModelRepository dataRepository, TwitterService twitterService, Model model, int unfollowIntervalMinMinutes, int unfollowIntervalMaxMinutes)
 		{
@@ -36,11 +37,19 @@ namespace TwitterProjectBL.Tasks
 
 		public void SetNextRunningDate()
 		{
-			int minutesInterval = 0;
-			Random rnd = new Random(DateTime.Now.Millisecond);
-			minutesInterval = rnd.Next(m_UnfollowIntervalMinMinutes, m_UnfollowIntervalMaxMinutes);
+			if (m_LastUnfollowWasUnseccessful == false)
+			{
+				int minutesInterval = 0;
+				Random rnd = new Random(DateTime.Now.Millisecond);
+				minutesInterval = rnd.Next(m_UnfollowIntervalMinMinutes, m_UnfollowIntervalMaxMinutes);
 
-			m_NextRunningDate = DateTime.Now.AddMinutes(minutesInterval);
+				m_NextRunningDate = DateTime.Now.AddMinutes(minutesInterval);
+			}
+			else
+			{
+				//since last unfollow was unseccessful repeating in 2 mins
+				m_NextRunningDate = DateTime.Now.AddMinutes(2);
+			}
 		}
 
 		public void Run()
@@ -53,9 +62,24 @@ namespace TwitterProjectBL.Tasks
 
 				TwitterError error = m_TwitterService.Response.Error;
 				if (error != null)
-					throw new ApplicationException(error.ToString());
+				{
+					m_LastUnfollowWasUnseccessful = true;
+					//159 = user's account was suspened; 34 = page doesn't exist; 108 = can't find specified user; 
+					if (error.Code == 159 || error.Code == 34 || error.Code == 108)
+					{
+						//marking as non-active
+						m_DataRepository.LogFriendProdspectAsNotActive(modelFriendsLog.Friend);
+						m_DataRepository.LogFriendAsUnfollowedForModel(m_Model, modelFriendsLog);
+						return;
+					}
+					else
+					{
+						throw new ApplicationException(error.ToString());
+					}
+				}
 
 				m_DataRepository.LogFriendAsUnfollowedForModel(m_Model, modelFriendsLog);
+				m_LastUnfollowWasUnseccessful = false;
 			}
 		}
 	}
