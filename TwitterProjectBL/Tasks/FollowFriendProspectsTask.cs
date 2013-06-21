@@ -82,7 +82,7 @@ namespace TwitterProjectBL.Tasks
 					else
 					{
 						//some other error, throwing the exception
-						throw new ApplicationException(error.ToString());
+						throw new TwitterProjectException(m_Model.Id.Value, error);
 					}
 				}
 

@@ -84,7 +84,7 @@ namespace TwitterProjectBL.Tasks
 
 				TwitterError error = m_TwitterService.Response.Error;
 				if (error != null)
-					throw new ApplicationException(error.ToString());
+					throw new TwitterProjectException(m_Model.Id.Value, error);
 
 				m_DataRepository.LogPostUpdateAsPublishedForModel(newPostUpdate, m_Model, PostUpdateType.Online);
 

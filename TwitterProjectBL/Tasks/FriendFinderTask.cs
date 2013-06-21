@@ -47,7 +47,7 @@ namespace TwitterProjectBL.Tasks
 
 				TwitterError error = m_TwitterService.Response.Error;
 				if (error != null)
-					throw new ApplicationException(error.ToString());
+					throw new TwitterProjectException(-1, error);
 
 				//retrieving a list of friend prospects
 				List<TwitterStatus> twitterStatuses = sr.Statuses.Where(st => st.Text.Contains("RT") == false &&
