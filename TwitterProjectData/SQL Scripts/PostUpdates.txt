@@ -167,7 +167,7 @@ INSERT INTO [dbo].[OnlinePostUpdates] ([PostText]) VALUES('I am so wet for you h
 INSERT INTO [dbo].[OnlinePostUpdates] ([PostText]) VALUES('Do you like super hot women? Of course you do sugar – come and check me out! I am live now! <----URL---> #hotwomen, #sexybitches')
 INSERT INTO [dbo].[OnlinePostUpdates] ([PostText]) VALUES('I just love to stroke off together and get real wet and messy, do you? I am live now! <----URL---> #masturbation, #webcam')
 INSERT INTO [dbo].[OnlinePostUpdates] ([PostText]) VALUES('My girlfriends and I went out last night to a strip club and damn I am so horny now! Help me out won’t you? <----URL---> #naughty')
-INSERT INTO [dbo].[OnlinePostUpdates] ([PostText]) VALUES('Your sex kitten wants to play with you! I can do things to you that will leave your head spinning. I am live now! <----URL---> #exotic')
+INSERT INTO [dbo].[OnlinePostUpdates] ([PostText]) VALUES('Your sex kitten wants to play with you! I can do things to you that will leave your head spinning. I am live now! <----URL--->')
 INSERT INTO [dbo].[OnlinePostUpdates] ([PostText]) VALUES('I know how I want it done. Do you think you have what it takes to follow my directions boys? I am live now! <----URL--->')
 INSERT INTO [dbo].[OnlinePostUpdates] ([PostText]) VALUES('I just came so hard and I am ready for more! Want to have some fun with me? I am live now! <----URL---> #slut, #webcam, #sexy')
 INSERT INTO [dbo].[OnlinePostUpdates] ([PostText]) VALUES('Those silky stockings feel and look amazing on my hot little feet! I know you want to … <----URL---> #footfetish, #stockings')
