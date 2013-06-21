@@ -15,6 +15,25 @@
 		<property name="TwitterAccessTokenSecret" not-null="true"></property>
 		<property name="LiveChatURL" not-null="true"></property>
 		<property name="OnlineStatusXMLFeed" not-null="true"></property>
+		<property name="FriendFinder_MinutesToWaitMin" not-null="true"></property>
+		<property name="FriendFinder_MinutesToWaitMax" not-null="true"></property>
+		<property name="FriendFinder_MaxFolloewersCount" not-null="true"></property>
+		<property name="FriendFinder_FollowersFriendsProportion" not-null="true"></property>
+		<property name="RegularPost_NoShowStartTime" not-null="true"></property>
+		<property name="RegularPost_NoShowEndTime" not-null="true"></property>
+		<property name="RegularPost_NextPublishMinMinute" not-null="true"></property>
+		<property name="RegularPost_NextPublishMaxMinute" not-null="true"></property>
+		<property name="OnlinePost_CheckOnlineStatusIntervalMins" not-null="true"></property>
+		<property name="OnlinePost_OnlinePostsIntervalMins" not-null="true"></property>
+		<property name="FollowFriend_FollowIntervalMinMinutes" not-null="true"></property>
+		<property name="FollowFriend_FollowIntervalMaxMinutes" not-null="true"></property>
+		<property name="FollowFriend_UnfollowIntervalMinMinutes" not-null="true"></property>
+		<property name="FollowFriend_UnfollowIntervalMaxMinutes" not-null="true"></property>
+		<property name="FriendFinderTask" not-null="true"></property>
+		<property name="RegularPostUpdateTask" not-null="true"></property>
+		<property name="OnlinePostUpdateTask" not-null="true"></property>
+		<property name="FollowFriendProspectsTask" not-null="true"></property>
+		<property name="UnfollowFriendTask" not-null="true"></property>
 	</class>
   
 </hibernate-mapping>
