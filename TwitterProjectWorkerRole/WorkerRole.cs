@@ -19,6 +19,8 @@ namespace TwitterProjectWorkerRole
 	public class WorkerRole : RoleEntryPoint
 	{
 		private List<ModelWorker> m_ModelWorkers = null;
+		private int m_NextIterationMinSeconds = 0;
+		private int m_NextIterationMaxSeconds = 0;
 
 		public override void Run()
 		{
@@ -49,13 +51,20 @@ namespace TwitterProjectWorkerRole
 					}
 				}
 
-				Thread.Sleep(20000);
+				//making it random so it doesn't look like a robot
+				Random rnd = new Random(DateTime.Now.Millisecond);
+				int secondsInterval = rnd.Next(m_NextIterationMinSeconds, m_NextIterationMaxSeconds);
+				Thread.Sleep(secondsInterval * 1000);
+
 				Trace.WriteLine("Working", "Information");
 			}
 		}
 
 		public override bool OnStart()
 		{
+			m_NextIterationMinSeconds = Convert.ToInt32(RoleEnvironment.GetConfigurationSettingValue("NextIterationMinSeconds"));
+			m_NextIterationMaxSeconds = Convert.ToInt32(RoleEnvironment.GetConfigurationSettingValue("NextIterationMaxSeconds"));
+
 			m_ModelWorkers = new List<ModelWorker>();
 			ModelRepository modelRepository = new ModelRepository();
 			string[] modelIDs = RoleEnvironment.GetConfigurationSettingValue("ModelIDs").Split(',');
