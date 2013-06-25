@@ -30,6 +30,8 @@ namespace TwitterProjectBL
 				FriendFinderTask friendFinderTask = new FriendFinderTask(
 																			new FriendFinderRepository(),
 																			m_TwitterService,
+																			m_Model.RegularPost_NoShowStartTime,
+																			m_Model.RegularPost_NoShowEndTime,
 																			m_Model.FriendFinder_MinutesToWaitMin,
 																			m_Model.FriendFinder_MinutesToWaitMax,
 																			m_Model.FriendFinder_MaxFolloewersCount,
@@ -58,6 +60,8 @@ namespace TwitterProjectBL
 																			new PostUpdateRepository()
 																			, m_TwitterService
 																			, m_Model
+																			, m_Model.RegularPost_NoShowStartTime
+																			, m_Model.RegularPost_NoShowEndTime 
 																			, m_Model.OnlineStatusXMLFeed
 																			, m_Model.LiveChatURL
 																			, m_Model.OnlinePost_CheckOnlineStatusIntervalMins
@@ -72,6 +76,8 @@ namespace TwitterProjectBL
 																			new ModelRepository()
 																			, m_TwitterService
 																			, m_Model
+																			, m_Model.RegularPost_NoShowStartTime
+																			, m_Model.RegularPost_NoShowEndTime
 																			, m_Model.FollowFriend_FollowIntervalMinMinutes
 																			, m_Model.FollowFriend_FollowIntervalMaxMinutes
 															);
@@ -84,6 +90,8 @@ namespace TwitterProjectBL
 																			new ModelRepository()
 																			, m_TwitterService
 																			, m_Model
+																			, m_Model.RegularPost_NoShowStartTime
+																			, m_Model.RegularPost_NoShowEndTime
 																			, m_Model.FollowFriend_UnfollowIntervalMinMinutes
 																			, m_Model.FollowFriend_UnfollowIntervalMaxMinutes
 															);

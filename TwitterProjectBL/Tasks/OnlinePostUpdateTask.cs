@@ -12,25 +12,20 @@ using TwitterProjectModel;
 
 namespace TwitterProjectBL.Tasks
 {
-	public class OnlinePostUpdateTask : ITask
+	public class OnlinePostUpdateTask : BaseTask
 	{
 		private const string C_URL_Placeholder = "<----URL--->";
 
 		private PostUpdateRepository m_DataRepository = null;
-		private TwitterService m_TwitterService = null;
-		private Model m_Model = null;
 		private string m_ModelXMLFeedURL = "";
 		private string m_ModelDestinationURL = "";
 		private int m_CheckOnlineStatusIntervalMins = 0;
 		private int m_OnlinePostsIntervalMins = 0;
-		private DateTime m_NextRunningDate = DateTime.MinValue;
 		private bool m_IsCurrentlyOnline = false;
 
-		public OnlinePostUpdateTask(PostUpdateRepository dataRepository, TwitterService twitterService, Model model, string modelXMLFeedURL, string modelDestinationURL, int checkOnlineStatusIntervalMins, int onlinePostsIntervalMins)
+		public OnlinePostUpdateTask(PostUpdateRepository dataRepository, TwitterService twitterService, Model model, string noShowStartTime, string noShowEndTime, string modelXMLFeedURL, string modelDestinationURL, int checkOnlineStatusIntervalMins, int onlinePostsIntervalMins) : base(twitterService, model, noShowStartTime, noShowEndTime)
 		{
 			m_DataRepository = dataRepository;
-			m_TwitterService = twitterService;
-			m_Model = model;
 			m_ModelXMLFeedURL = modelXMLFeedURL;
 			m_ModelDestinationURL = modelDestinationURL;
 			m_CheckOnlineStatusIntervalMins = checkOnlineStatusIntervalMins;
@@ -39,20 +34,18 @@ namespace TwitterProjectBL.Tasks
 			SetNextRunningDate();
 		}
 
-		public DateTime GetNextRunningDate()
+		public override void SetNextRunningDate()
 		{
-			return m_NextRunningDate;
-		}
-
-		public void SetNextRunningDate()
-		{
-			if (m_IsCurrentlyOnline == true)
-				m_NextRunningDate = DateTime.Now.AddMinutes(m_OnlinePostsIntervalMins);
+			if (IsNoShowTime() == false) //regualr hours
+				if (m_IsCurrentlyOnline == true)
+					m_NextRunningDate = DateTime.Now.AddMinutes(m_OnlinePostsIntervalMins);
+				else
+					m_NextRunningDate = DateTime.Now.AddMinutes(m_CheckOnlineStatusIntervalMins);
 			else
-				m_NextRunningDate = DateTime.Now.AddMinutes(m_CheckOnlineStatusIntervalMins);
+				m_NextRunningDate = GetNoShowTimeEndTime().AddMinutes(m_CheckOnlineStatusIntervalMins);
 		}
 
-		public void Run()
+		public override void Run()
 		{
 			//checking onlne status 
 			HttpWebRequest httpReq = (HttpWebRequest)HttpWebRequest.Create(m_ModelXMLFeedURL);

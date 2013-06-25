@@ -9,20 +9,17 @@ using TwitterProjectModel;
 
 namespace TwitterProjectBL.Tasks
 {
-	public class FriendFinderTask : ITask
+	public class FriendFinderTask : BaseTask
 	{
 		private FriendFinderRepository m_DataRepository = null;
-		private TwitterService m_TwitterService = null;
 		private int m_MinutesToWaitMin = 0;
 		private int m_MinutesToWaitMax = 0;
 		private int m_MaxFolloewersCount = 0;
 		private double m_FollowersFriendsProportion = 0.0;
-		private DateTime m_NextRunningDate = DateTime.MinValue;
 
-		public FriendFinderTask(FriendFinderRepository dataRepository, TwitterService twitterService, int minutesToWaitMin, int minutesToWaitMax, int maxFolloewersCount, double followersFriendsProportion)
+		public FriendFinderTask(FriendFinderRepository dataRepository, TwitterService twitterService, string noShowStartTime, string noShowEndTime, int minutesToWaitMin, int minutesToWaitMax, int maxFolloewersCount, double followersFriendsProportion) : base(twitterService, null, noShowStartTime, noShowEndTime)
 		{
 			m_DataRepository = dataRepository;
-			m_TwitterService = twitterService;
 			m_MinutesToWaitMin = minutesToWaitMin;
 			m_MinutesToWaitMax = minutesToWaitMax;
 			m_MaxFolloewersCount = maxFolloewersCount;
@@ -31,12 +28,7 @@ namespace TwitterProjectBL.Tasks
 			SetNextRunningDate();
 		}
 
-		public DateTime GetNextRunningDate()
-		{
-			return m_NextRunningDate;
-		}
-
-		public void Run()
+		public override void Run()
 		{
 			MonitorUser nextMontiroUser = m_DataRepository.GetNextMonitorUser();
 			if (nextMontiroUser != null)
@@ -67,7 +59,7 @@ namespace TwitterProjectBL.Tasks
 			}
 		}
 
-		public void SetNextRunningDate()
+		public override void SetNextRunningDate()
 		{
 			int minutesInterval = 0;
 			Random rnd = new Random(DateTime.Now.Millisecond);

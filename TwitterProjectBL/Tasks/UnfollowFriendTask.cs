@@ -9,50 +9,43 @@ using TwitterProjectModel;
 
 namespace TwitterProjectBL.Tasks
 {
-	public class UnfollowFriendTask : ITask
+	public class UnfollowFriendTask : BaseTask
 	{
 		private ModelRepository m_DataRepository = null;
-		private TwitterService m_TwitterService = null;
-		private Model m_Model = null;
 		private int m_UnfollowIntervalMinMinutes = 0;
 		private int m_UnfollowIntervalMaxMinutes = 0;
-		private DateTime m_NextRunningDate = DateTime.MinValue;
 		bool m_LastUnfollowWasUnseccessful = false;
 
-		public UnfollowFriendTask(ModelRepository dataRepository, TwitterService twitterService, Model model, int unfollowIntervalMinMinutes, int unfollowIntervalMaxMinutes)
+		public UnfollowFriendTask(ModelRepository dataRepository, TwitterService twitterService, Model model, string noShowStartTime, string noShowEndTime, int unfollowIntervalMinMinutes, int unfollowIntervalMaxMinutes) : base(twitterService, model, noShowStartTime, noShowEndTime)
 		{
 			m_DataRepository = dataRepository;
-			m_TwitterService = twitterService;
-			m_Model = model;
 			m_UnfollowIntervalMinMinutes = unfollowIntervalMinMinutes;
 			m_UnfollowIntervalMaxMinutes = unfollowIntervalMaxMinutes;
 
 			SetNextRunningDate();
 		}
 
-		public DateTime GetNextRunningDate()
+		public override void SetNextRunningDate()
 		{
-			return m_NextRunningDate;
+			if (IsNoShowTime() == false) //regualr hours
+				if (m_LastUnfollowWasUnseccessful == false)
+				{
+					int minutesInterval = 0;
+					Random rnd = new Random(DateTime.Now.Millisecond);
+					minutesInterval = rnd.Next(m_UnfollowIntervalMinMinutes, m_UnfollowIntervalMaxMinutes);
+
+					m_NextRunningDate = DateTime.Now.AddMinutes(minutesInterval);
+				}
+				else
+				{
+					//since last unfollow was unseccessful repeating in 2 mins
+					m_NextRunningDate = DateTime.Now.AddMinutes(2);
+				}
+			else //now show time hours
+				m_NextRunningDate = GetNoShowTimeEndTime().AddMinutes(m_UnfollowIntervalMinMinutes);
 		}
 
-		public void SetNextRunningDate()
-		{
-			if (m_LastUnfollowWasUnseccessful == false)
-			{
-				int minutesInterval = 0;
-				Random rnd = new Random(DateTime.Now.Millisecond);
-				minutesInterval = rnd.Next(m_UnfollowIntervalMinMinutes, m_UnfollowIntervalMaxMinutes);
-
-				m_NextRunningDate = DateTime.Now.AddMinutes(minutesInterval);
-			}
-			else
-			{
-				//since last unfollow was unseccessful repeating in 2 mins
-				m_NextRunningDate = DateTime.Now.AddMinutes(2);
-			}
-		}
-
-		public void Run()
+		public override void Run()
 		{
 			ModelFriendsLog modelFriendsLog = m_DataRepository.GetNextFriendToUnfollowForModel(m_Model);
 			if (modelFriendsLog != null)
