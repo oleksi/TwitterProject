@@ -49,3 +49,35 @@ Begin
 
 End
 GO
+
+
+
+
+
+/****** Object:  StoredProcedure [dbo].[usp_GetNextFriendProspectToFollowForModel]    Script Date: 5/23/2013 11:22:43 PM ******/
+DROP PROCEDURE [dbo].[usp_GetNextFriendProspectToFollowForModel]
+GO
+
+/****** Object:  StoredProcedure [dbo].[usp_GetNextFriendProspectToFollowForModel]    Script Date: 5/23/2013 11:22:43 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[usp_GetNextFriendProspectToFollowForModel]
+    @ModelId int
+AS 
+Begin
+	SET NOCOUNT ON
+
+	SELECT top 1 fp.*
+	FROM FriendProspects fp
+	where fp.FriendProspectId not in (select FriendId from ModelFriendsLogs mfl where mfl.ModelId = @ModelId)
+	and fp.IsActive = 1
+	order by (ABS(CAST((BINARY_CHECKSUM(FriendProspectId, NEWID())) as int)))
+
+End
+GO

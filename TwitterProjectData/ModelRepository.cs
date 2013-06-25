@@ -39,9 +39,22 @@ namespace TwitterProjectData
 		{
 			using (var session = getSession())
 			{
-				var friendProspect = session.QueryOver<FriendProspect>().WhereRestrictionOn(fp => fp.Id).Not.IsIn(session.QueryOver<ModelFriendsLog>().Where(mfl => mfl.Model.Id == model.Id).Select(mfl => mfl.Friend.Id).List<int>().ToArray()).Where(fp => fp.IsActive == true).Take(1).SingleOrDefault();
-				string userName = friendProspect.ReferredBy.UserName; //need to prevent lazy initialization
-				return friendProspect;
+				ISQLQuery sqlQuery = session.CreateSQLQuery("EXEC usp_GetNextFriendProspectToFollowForModel @ModelId = :ModelId");
+				sqlQuery.AddEntity(typeof(FriendProspect));
+				sqlQuery.SetParameter("ModelId", model.Id);
+				IList<FriendProspect> friendProspectList = sqlQuery.List<FriendProspect>();
+
+				if (friendProspectList.Count > 0)
+				{
+					string username = friendProspectList[0].ReferredBy.UserName; //need to prevent lazy initialization
+					return friendProspectList[0];
+				}
+				else
+					return null;
+
+				//var friendProspect = session.QueryOver<FriendProspect>().WhereRestrictionOn(fp => fp.Id).Not.IsIn(session.QueryOver<ModelFriendsLog>().Where(mfl => mfl.Model.Id == model.Id).Select(mfl => mfl.Friend.Id).List<int>().ToArray()).Where(fp => fp.IsActive == true).Take(1).SingleOrDefault();
+				//string userName = friendProspect.ReferredBy.UserName; //need to prevent lazy initialization
+				//return friendProspect;
 			}
 		}
 
