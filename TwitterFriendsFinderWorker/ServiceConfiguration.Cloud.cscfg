@@ -4,7 +4,7 @@
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=twitterproject;AccountKey=V1vUbvp/Uhz+sH4xU3U5IRjaU/0wUQHcj7QYBeMOq19VVViwQ7SDpmYOAVry3X7RQ61IB2gMAlNZWlK1Gwvtiw==" />
-      <Setting name="ModelIDs" value="1,2" />
+      <Setting name="ModelIDs" value="1,2,3,4,5" />
       <Setting name="NextIterationMinSeconds" value="10" />
       <Setting name="NextIterationMaxSeconds" value="25" />
     </ConfigurationSettings>
