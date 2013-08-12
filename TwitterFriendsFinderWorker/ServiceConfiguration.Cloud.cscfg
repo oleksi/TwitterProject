@@ -4,7 +4,7 @@
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=twitterproject;AccountKey=V1vUbvp/Uhz+sH4xU3U5IRjaU/0wUQHcj7QYBeMOq19VVViwQ7SDpmYOAVry3X7RQ61IB2gMAlNZWlK1Gwvtiw==" />
-      <Setting name="ModelIDs" value="5,6" />
+      <Setting name="ModelIDs" value="1,2,3,4,5,6" />
       <Setting name="NextIterationMinSeconds" value="10" />
       <Setting name="NextIterationMaxSeconds" value="25" />
       <Setting name="StreamateXMLRequest" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;&lt;SMLQuery&gt; &lt;Options MaxResults=&quot;50&quot; /&gt; &lt;AvailablePerformers Exact=&quot;true&quot; QueryId=&quot;ModelOnlineStatus&quot;&gt;  &lt;Include&gt;   &lt;Descriptions /&gt;   &lt;Media&gt;staticbiopic&lt;/Media&gt;   &lt;StaticSort /&gt;  &lt;/Include&gt;  &lt;Constraints&gt;   &lt;PublicProfile /&gt;   &lt;StreamType&gt;live,recorded,offline&lt;/StreamType&gt;   &lt;Name&gt;[MODEL_NAME]&lt;/Name&gt;  &lt;/Constraints&gt; &lt;/AvailablePerformers&gt;&lt;/SMLQuery&gt;" />
