@@ -59,7 +59,7 @@ namespace TwitterProjectBL.Tasks
 				XDocument xDoc = XDocument.Parse(respXmlStr);
 				XElement onlineStatusElement = xDoc.Root.Descendants().SingleOrDefault(xe => xe.Name == "onlinestatus");
 
-				isModelOnline = (onlineStatusElement.Value == "1");
+				isModelOnline = (onlineStatusElement != null && onlineStatusElement.Value == "1");
 			}
 			else //Streamate model
 			{
@@ -67,7 +67,7 @@ namespace TwitterProjectBL.Tasks
 				XDocument xDoc = XDocument.Parse(responseXml);
 				XElement onlineStatusElement = xDoc.Root.Descendants().SingleOrDefault(xe => xe.Name == "Performer");
 
-				isModelOnline = (onlineStatusElement.Attribute("StreamType").Value.ToLower() == "live");		
+				isModelOnline = (onlineStatusElement != null && onlineStatusElement.Attribute("StreamType").Value.ToLower() == "live");		
 			}
 
 			if (isModelOnline == true)
