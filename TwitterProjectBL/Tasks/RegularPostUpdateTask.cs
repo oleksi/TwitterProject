@@ -12,14 +12,10 @@ namespace TwitterProjectBL.Tasks
 	public class RegularPostUpdateTask : BaseTask
 	{
 		private PostUpdateRepository m_DataRepository = null;
-		private int m_NextPublishMinMinute = 0;
-		private int m_NextPublishMaxMinute = 0;
 
-		public RegularPostUpdateTask(PostUpdateRepository dataRepository, TwitterService twitterService, Model model, string noShowStartTime, string noShowEndTime, int nextPublishMinMinute, int nextPublishMaxMinute) : base(twitterService, model, noShowStartTime, noShowEndTime)
+		public RegularPostUpdateTask(PostUpdateRepository dataRepository, TwitterService twitterService, Model model) : base(twitterService, model)
 		{
 			m_DataRepository = dataRepository;
-			m_NextPublishMinMinute = nextPublishMinMinute;
-			m_NextPublishMaxMinute = nextPublishMaxMinute;
 
 			SetNextRunningDate();
 		}
@@ -28,7 +24,7 @@ namespace TwitterProjectBL.Tasks
 		{
 			int minutesInterval = 0;
 			Random rnd = new Random(DateTime.Now.Millisecond);
-			minutesInterval = rnd.Next(m_NextPublishMinMinute, m_NextPublishMaxMinute);
+			minutesInterval = rnd.Next(m_Model.RegularPost_NextPublishMinMinute, m_Model.RegularPost_NextPublishMaxMinute);
 
 			if (IsNoShowTime() == false) //regualr hours
 				m_NextRunningDate = DateTime.Now.AddMinutes(minutesInterval);

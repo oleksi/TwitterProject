@@ -15,11 +15,17 @@ namespace TwitterProjectBL
 		private TwitterService m_TwitterService = null;
 		private Model m_Model = null;
 		public List<ITask> Tasks { get; private set; }
+		public Dictionary<string, string> Settings { get; private set; }
 
-		public ModelWorker(Model model)
+		public ModelWorker(Model model) : this(model, new Dictionary<string,string>())
+		{
+		}
+
+		public ModelWorker(Model model, Dictionary<string,string> settings)
 		{
 			m_Model = model;
 			Tasks = new List<ITask>();
+			Settings = settings;
 
 			m_TwitterService = new TwitterService(m_Model.TwitterConsumerKey, m_Model.TwitterConsumerSecret);
 			m_TwitterService.AuthenticateWith(m_Model.TwitterAccessToken, m_Model.TwitterAccessTokenSecret);
@@ -45,27 +51,27 @@ namespace TwitterProjectBL
 				RegularPostUpdateTask regularPostUpdateTask = new RegularPostUpdateTask(
 																			new PostUpdateRepository(),
 																			m_TwitterService,
-																			m_Model,
-																			m_Model.RegularPost_NoShowStartTime,
-																			m_Model.RegularPost_NoShowEndTime,
-																			m_Model.RegularPost_NextPublishMinMinute,
-																			m_Model.RegularPost_NextPublishMaxMinute
+																			m_Model
 															);
 				Tasks.Add(regularPostUpdateTask);
 			}
 
 			if (m_Model.OnlinePostUpdateTask == true)
 			{
+				string streamateXMLRequest = "";
+
+				if (m_Model.From == "Streamate")
+				{
+					streamateXMLRequest = Settings["StreamateXMLRequest"];
+					if (String.IsNullOrEmpty(streamateXMLRequest) == true)
+						throw new ApplicationException("StreamateXMLRequest is not defined");
+				}
+
 				OnlinePostUpdateTask onlinePostUpdateTask = new OnlinePostUpdateTask(
 																			new PostUpdateRepository()
 																			, m_TwitterService
 																			, m_Model
-																			, m_Model.RegularPost_NoShowStartTime
-																			, m_Model.RegularPost_NoShowEndTime 
-																			, m_Model.OnlineStatusXMLFeed
-																			, m_Model.LiveChatURL
-																			, m_Model.OnlinePost_CheckOnlineStatusIntervalMins
-																			, m_Model.OnlinePost_OnlinePostsIntervalMins
+																			, streamateXMLRequest
 															);
 				Tasks.Add(onlinePostUpdateTask);
 			}
@@ -76,10 +82,6 @@ namespace TwitterProjectBL
 																			new ModelRepository()
 																			, m_TwitterService
 																			, m_Model
-																			, m_Model.RegularPost_NoShowStartTime
-																			, m_Model.RegularPost_NoShowEndTime
-																			, m_Model.FollowFriend_FollowIntervalMinMinutes
-																			, m_Model.FollowFriend_FollowIntervalMaxMinutes
 															);
 				Tasks.Add(followFriendProspectsTask);
 			}
@@ -90,10 +92,6 @@ namespace TwitterProjectBL
 																			new ModelRepository()
 																			, m_TwitterService
 																			, m_Model
-																			, m_Model.RegularPost_NoShowStartTime
-																			, m_Model.RegularPost_NoShowEndTime
-																			, m_Model.FollowFriend_UnfollowIntervalMinMinutes
-																			, m_Model.FollowFriend_UnfollowIntervalMaxMinutes
 															);
 				Tasks.Add(unfollowFriendTask);
 			}

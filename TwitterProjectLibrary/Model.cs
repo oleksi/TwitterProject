@@ -10,6 +10,7 @@ namespace TwitterProjectModel
 	{
 		public virtual int? Id { get; set; }
 		public virtual string UserName { get; set; }
+		public virtual string From { get; set; }
 		public virtual string TwitterConsumerKey { get; set; }
 		public virtual string TwitterConsumerSecret { get; set; }
 		public virtual string TwitterAccessToken { get; set; }
@@ -34,6 +35,6 @@ namespace TwitterProjectModel
 		public virtual bool RegularPostUpdateTask { get; set; }
 		public virtual bool OnlinePostUpdateTask { get; set; }
 		public virtual bool FollowFriendProspectsTask { get; set; }
-		public virtual bool UnfollowFriendTask { get; set; }
+		public virtual bool UnfollowFriendTask { get; set; } 
 	}
 }

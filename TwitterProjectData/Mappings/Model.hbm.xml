@@ -9,6 +9,7 @@
 			<generator class="identity"></generator>
 		</id>
 		<property name="UserName" column="ModelUserName" not-null="true"></property>
+		<property name="From" column="ModelFrom" not-null="true"></property>
 		<property name="TwitterConsumerKey" not-null="true"></property>
 		<property name="TwitterConsumerSecret" not-null="true"></property>
 		<property name="TwitterAccessToken" not-null="true"></property>

@@ -17,7 +17,7 @@ namespace TwitterProjectBL.Tasks
 		private int m_MaxFolloewersCount = 0;
 		private double m_FollowersFriendsProportion = 0.0;
 
-		public FriendFinderTask(FriendFinderRepository dataRepository, TwitterService twitterService, string noShowStartTime, string noShowEndTime, int minutesToWaitMin, int minutesToWaitMax, int maxFolloewersCount, double followersFriendsProportion) : base(twitterService, null, noShowStartTime, noShowEndTime)
+		public FriendFinderTask(FriendFinderRepository dataRepository, TwitterService twitterService, string noShowStartTime, string noShowEndTime, int minutesToWaitMin, int minutesToWaitMax, int maxFolloewersCount, double followersFriendsProportion) : base(twitterService, null)
 		{
 			m_DataRepository = dataRepository;
 			m_MinutesToWaitMin = minutesToWaitMin;

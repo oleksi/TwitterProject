@@ -13,15 +13,11 @@ namespace TwitterProjectBL.Tasks
 	public class FollowFriendProspectsTask : BaseTask
 	{
 		private ModelRepository m_DataRepository = null;
-		private int m_FollowIntervalMinMinutes = 0;
-		private int m_FollowIntervalMaxMinutes = 0;
 		bool m_LastFollowWasUnseccessful = false;
 
-		public FollowFriendProspectsTask(ModelRepository dataRepository, TwitterService twitterService, Model model, string noShowStartTime, string noShowEndTime, int followIntervalMinMinutes, int followIntervalMaxMinutes) : base(twitterService, model, noShowStartTime, noShowEndTime)
+		public FollowFriendProspectsTask(ModelRepository dataRepository, TwitterService twitterService, Model model) : base(twitterService, model)
 		{
 			m_DataRepository = dataRepository;
-			m_FollowIntervalMinMinutes = followIntervalMinMinutes;
-			m_FollowIntervalMaxMinutes = followIntervalMaxMinutes;
 
 			SetNextRunningDate();
 		}
@@ -33,7 +29,7 @@ namespace TwitterProjectBL.Tasks
 				{
 					int minutesInterval = 0;
 					Random rnd = new Random(DateTime.Now.Millisecond);
-					minutesInterval = rnd.Next(m_FollowIntervalMinMinutes, m_FollowIntervalMaxMinutes);
+					minutesInterval = rnd.Next(m_Model.FollowFriend_FollowIntervalMinMinutes, m_Model.FollowFriend_FollowIntervalMaxMinutes);
 
 					m_NextRunningDate = DateTime.Now.AddMinutes(minutesInterval);
 				}
@@ -43,7 +39,7 @@ namespace TwitterProjectBL.Tasks
 					m_NextRunningDate = DateTime.Now.AddMinutes(2);
 				}
 			else //now show time hours
-				m_NextRunningDate = GetNoShowTimeEndTime().AddMinutes(m_FollowIntervalMinMinutes);
+				m_NextRunningDate = GetNoShowTimeEndTime().AddMinutes(m_Model.FollowFriend_FollowIntervalMinMinutes);
 
 		}
 

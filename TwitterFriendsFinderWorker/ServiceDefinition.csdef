@@ -8,6 +8,7 @@
       <Setting name="ModelIDs" />
       <Setting name="NextIterationMinSeconds" />
       <Setting name="NextIterationMaxSeconds" />
+      <Setting name="StreamateXMLRequest" />
     </ConfigurationSettings>
   </WorkerRole>
 </ServiceDefinition>

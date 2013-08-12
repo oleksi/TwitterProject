@@ -17,19 +17,14 @@ namespace TwitterProjectBL.Tasks
 		private const string C_URL_Placeholder = "<----URL--->";
 
 		private PostUpdateRepository m_DataRepository = null;
-		private string m_ModelXMLFeedURL = "";
-		private string m_ModelDestinationURL = "";
-		private int m_CheckOnlineStatusIntervalMins = 0;
-		private int m_OnlinePostsIntervalMins = 0;
+		private string m_StreamateXMLRequest;
 		private bool m_IsCurrentlyOnline = false;
 
-		public OnlinePostUpdateTask(PostUpdateRepository dataRepository, TwitterService twitterService, Model model, string noShowStartTime, string noShowEndTime, string modelXMLFeedURL, string modelDestinationURL, int checkOnlineStatusIntervalMins, int onlinePostsIntervalMins) : base(twitterService, model, noShowStartTime, noShowEndTime)
+		public OnlinePostUpdateTask(PostUpdateRepository dataRepository, TwitterService twitterService, Model model, string streamateXMLRequest)
+			: base(twitterService, model)
 		{
 			m_DataRepository = dataRepository;
-			m_ModelXMLFeedURL = modelXMLFeedURL;
-			m_ModelDestinationURL = modelDestinationURL;
-			m_CheckOnlineStatusIntervalMins = checkOnlineStatusIntervalMins;
-			m_OnlinePostsIntervalMins = onlinePostsIntervalMins;
+			m_StreamateXMLRequest = streamateXMLRequest.Replace("[MODEL_NAME]", m_Model.UserName);
 
 			SetNextRunningDate();
 		}
@@ -38,30 +33,44 @@ namespace TwitterProjectBL.Tasks
 		{
 			if (IsNoShowTime() == false) //regualr hours
 				if (m_IsCurrentlyOnline == true)
-					m_NextRunningDate = DateTime.Now.AddMinutes(m_OnlinePostsIntervalMins);
+					m_NextRunningDate = DateTime.Now.AddMinutes(m_Model.OnlinePost_OnlinePostsIntervalMins);
 				else
-					m_NextRunningDate = DateTime.Now.AddMinutes(m_CheckOnlineStatusIntervalMins);
+					m_NextRunningDate = DateTime.Now.AddMinutes(m_Model.OnlinePost_CheckOnlineStatusIntervalMins);
 			else
-				m_NextRunningDate = GetNoShowTimeEndTime().AddMinutes(m_CheckOnlineStatusIntervalMins);
+				m_NextRunningDate = GetNoShowTimeEndTime().AddMinutes(m_Model.OnlinePost_CheckOnlineStatusIntervalMins);
 		}
 
 		public override void Run()
 		{
-			//checking onlne status 
-			HttpWebRequest httpReq = (HttpWebRequest)HttpWebRequest.Create(m_ModelXMLFeedURL);
-			string respXmlStr = "";
-			using (HttpWebResponse httpResp = (HttpWebResponse)httpReq.GetResponse())
+			bool isModelOnline = false;
+			if (m_Model.From == "LiveJasmin")
 			{
-				using (StreamReader respStream = new StreamReader(httpResp.GetResponseStream()))
+				//checking onlne status 
+				HttpWebRequest httpReq = (HttpWebRequest)HttpWebRequest.Create(m_Model.OnlineStatusXMLFeed);
+				string respXmlStr = "";
+				using (HttpWebResponse httpResp = (HttpWebResponse)httpReq.GetResponse())
 				{
-					respXmlStr = respStream.ReadToEnd();
+					using (StreamReader respStream = new StreamReader(httpResp.GetResponseStream()))
+					{
+						respXmlStr = respStream.ReadToEnd();
+					}
 				}
-			}
- 
-			XDocument xDoc = XDocument.Parse(respXmlStr);
-			XElement onlineStatusElement = xDoc.Root.Descendants().SingleOrDefault(xe => xe.Name == "onlinestatus");
 
-			if (onlineStatusElement.Value == "1")
+				XDocument xDoc = XDocument.Parse(respXmlStr);
+				XElement onlineStatusElement = xDoc.Root.Descendants().SingleOrDefault(xe => xe.Name == "onlinestatus");
+
+				isModelOnline = (onlineStatusElement.Value == "1");
+			}
+			else //Streamate model
+			{
+				string responseXml = WebRequestPostData(@"http://affiliate.streamate.com/SMLive/SMLResult.xml", m_StreamateXMLRequest);
+				XDocument xDoc = XDocument.Parse(responseXml);
+				XElement onlineStatusElement = xDoc.Root.Descendants().SingleOrDefault(xe => xe.Name == "Performer");
+
+				isModelOnline = (onlineStatusElement.Attribute("StreamType").Value.ToLower() == "live");		
+			}
+
+			if (isModelOnline == true)
 			{
 				PostUpdate newPostUpdate = m_DataRepository.GetNextPostUpdateForModel(m_Model, PostUpdateType.Online);
 				string twitterMessage = newPostUpdate.PostText;
@@ -70,7 +79,7 @@ namespace TwitterProjectBL.Tasks
 				else
 					twitterMessage += " {0}";
 
-				twitterMessage = String.Format(twitterMessage, m_ModelDestinationURL);
+				twitterMessage = String.Format(twitterMessage, m_Model.LiveChatURL);
 
 				//publishing online status message
 				m_TwitterService.SendTweet(new SendTweetOptions() { Status = twitterMessage });
@@ -86,6 +95,32 @@ namespace TwitterProjectBL.Tasks
 			else
 			{
 				m_IsCurrentlyOnline = false;
+			}
+		}
+
+		private static string WebRequestPostData(string url, string postData)
+		{
+			System.Net.WebRequest req = System.Net.WebRequest.Create(url);
+
+			req.ContentType = "text/xml";
+			req.Method = "POST";
+
+			byte[] bytes = System.Text.Encoding.ASCII.GetBytes(postData);
+			req.ContentLength = bytes.Length;
+
+			using (Stream os = req.GetRequestStream())
+			{
+				os.Write(bytes, 0, bytes.Length);
+			}
+
+			using (System.Net.WebResponse resp = req.GetResponse())
+			{
+				if (resp == null) return null;
+
+				using (System.IO.StreamReader sr = new System.IO.StreamReader(resp.GetResponseStream()))
+				{
+					return sr.ReadToEnd().Trim();
+				}
 			}
 		}
 	}

@@ -72,7 +72,13 @@ namespace TwitterProjectWorkerRole
 			foreach (string modelIDStr in modelIDs)
 			{
 				Model currModel = modelRepository.GetModelById(Convert.ToInt32(modelIDStr));
-				m_ModelWorkers.Add(new ModelWorker(currModel));
+				Dictionary<string, string> modelWorkerSettings = new Dictionary<string, string>();
+				if (currModel.From == "Streamate")
+					modelWorkerSettings["StreamateXMLRequest"] = RoleEnvironment.GetConfigurationSettingValue("StreamateXMLRequest");
+
+				ModelWorker modelWorker = new ModelWorker(currModel, modelWorkerSettings);
+
+				m_ModelWorkers.Add(modelWorker);
 			}
 
 			// Set the maximum number of concurrent connections 
