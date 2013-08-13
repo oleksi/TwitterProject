@@ -63,7 +63,7 @@ namespace TwitterProjectBL.Tasks
 			}
 			else //Streamate model
 			{
-				string responseXml = WebRequestPostData(@"http://affiliate.streamate.com/SMLive/SMLResult.xml", m_StreamateXMLRequest);
+				string responseXml = WebRequestPostData(m_Model.OnlineStatusXMLFeed, m_StreamateXMLRequest);
 				XDocument xDoc = XDocument.Parse(responseXml);
 				XElement onlineStatusElement = xDoc.Root.Descendants().SingleOrDefault(xe => xe.Name == "Performer");
 
