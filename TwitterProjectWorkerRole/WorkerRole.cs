@@ -34,20 +34,7 @@ namespace TwitterProjectWorkerRole
 					foreach (ITask task in currModelWorker.Tasks)
 					{
 						if (task.GetNextRunningDate() <= DateTime.Now)
-						{
-							try
-							{
-								task.Run();
-							}
-							catch (Exception ex)
-							{
-								Trace.TraceError(ex.ToString());
-							}
-							finally
-							{
-								task.SetNextRunningDate();
-							}
-						}
+							task.RunAsync();
 					}
 				}
 

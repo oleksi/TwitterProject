@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,22 @@ namespace TwitterProjectBL.Tasks
 
 		public virtual void Run()
 		{
+		}
+
+		public void RunAsync()
+		{
+			try
+			{
+				Parallel.Invoke(() => Run());
+			}
+			catch (Exception ex)
+			{
+				Trace.TraceError(ex.ToString());
+			}
+			finally
+			{
+				SetNextRunningDate();
+			}
 		}
 
 		protected bool IsNoShowTime()

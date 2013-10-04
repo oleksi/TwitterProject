@@ -11,5 +11,6 @@ namespace TwitterProjectBL.Tasks
 		DateTime GetNextRunningDate();
 		void SetNextRunningDate();
 		void Run();
+		void RunAsync();
 	}
 }
