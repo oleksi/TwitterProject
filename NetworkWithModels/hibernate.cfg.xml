@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- This is the System.Data.dll provider for SQL Server -->
+<hibernate-configuration  xmlns="urn:nhibernate-configuration-2.2" >
+	<session-factory name="NHibernate.Test">
+		<property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
+		<property name="connection.connection_string">
+			<!--Server=7E-OSHEV-CYBER\SQLEXPRESS;initial catalog=TwitterProject;User Id=twitterprojectadmin;Password=P@ssw0rd;Integrated Security=True;MultipleActiveResultSets=True-->
+			Server=t4u1efonby.database.windows.net;initial catalog=TwitterProject1;User Id=oleksi;Password=Thr33m1ll10ns;Integrated Security=False;MultipleActiveResultSets=True
+		</property>
+		<property name="dialect">NHibernate.Dialect.MsSql2008Dialect</property>
+		<!--<property name="hbm2ddl.auto">create</property>-->
+		<property name="show_sql">true</property>
+	</session-factory>
+</hibernate-configuration>

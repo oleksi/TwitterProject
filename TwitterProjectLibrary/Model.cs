@@ -36,5 +36,6 @@ namespace TwitterProjectModel
 		public virtual bool FollowFriendProspectsTask { get; set; }
 		public virtual bool UnfollowFriendTask { get; set; }
 		public virtual string From { get; set; }
+		public virtual bool IsActive { get; set; }
 	}
 }

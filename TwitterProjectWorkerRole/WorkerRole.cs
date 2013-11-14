@@ -54,11 +54,10 @@ namespace TwitterProjectWorkerRole
 
 			m_ModelWorkers = new List<ModelWorker>();
 			ModelRepository modelRepository = new ModelRepository();
-			string[] modelIDs = RoleEnvironment.GetConfigurationSettingValue("ModelIDs").Split(',');
 
-			foreach (string modelIDStr in modelIDs)
+			IList<Model> models = modelRepository.GetActiveModels();
+			foreach (Model currModel in models)
 			{
-				Model currModel = modelRepository.GetModelById(Convert.ToInt32(modelIDStr));
 				Dictionary<string, string> modelWorkerSettings = new Dictionary<string, string>();
 				if (currModel.From == "Streamate")
 					modelWorkerSettings["StreamateXMLRequest"] = RoleEnvironment.GetConfigurationSettingValue("StreamateXMLRequest");

@@ -5,7 +5,6 @@
       <Import moduleName="Diagnostics" />
     </Imports>
     <ConfigurationSettings>
-      <Setting name="ModelIDs" />
       <Setting name="NextIterationMinSeconds" />
       <Setting name="NextIterationMaxSeconds" />
       <Setting name="StreamateXMLRequest" />

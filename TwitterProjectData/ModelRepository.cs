@@ -15,6 +15,17 @@ namespace TwitterProjectData
 			return SessionProvider.SessionFactory.OpenSession();
 		}
 
+		public IList<Model> GetActiveModels()
+		{
+			IList<Model> models = new List<Model>();
+			using (var session = getSession())
+			{
+				models = session.QueryOver<Model>().Where(mdl => mdl.IsActive == true).OrderBy(mdl => mdl.Id).Asc.List<Model>();
+			}
+
+			return models;
+		}
+
 		public Model GetModelById(int id)
 		{
 			using (var session = getSession())

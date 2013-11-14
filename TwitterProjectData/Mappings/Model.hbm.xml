@@ -35,6 +35,7 @@
 		<property name="FollowFriendProspectsTask" not-null="true"></property>
 		<property name="UnfollowFriendTask" not-null="true"></property>
 		<property name="From" column="ModelFrom" not-null="true"></property>
+		<property name="IsActive" not-null="true"></property>
 	</class>
   
 </hibernate-mapping>
