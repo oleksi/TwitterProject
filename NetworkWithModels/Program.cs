@@ -12,7 +12,7 @@ namespace NetworkWithModels
 {
 	class Program
 	{
-		const int c_NetworkingModelId = 19;
+		const int c_NetworkingModelId = 21;
 
 		static void Main(string[] args)
 		{
@@ -46,14 +46,16 @@ namespace NetworkWithModels
 					FollowUserOptions fuo = new FollowUserOptions() { Follow = true, ScreenName = modelsTwitterUsernames[currModel.UserName] };
 					service.FollowUser(fuo);
 
-					Console.WriteLine(String.Format("Successfully followed {0}", currModel.UserName));
+					Console.WriteLine(String.Format("Successfully followed {0} at {1}", currModel.UserName, DateTime.Now.ToString()));
 				}
 				catch(Exception ex)
 				{
 					Console.WriteLine(ex.ToString());	
 				}
 
-				Thread.Sleep(1000);
+				Random rnd = new Random(DateTime.Now.Millisecond);
+				int sleepInMls = rnd.Next(900000, 1200000);
+				Thread.Sleep(sleepInMls);
 			}
 
 			//let all other models follow us
