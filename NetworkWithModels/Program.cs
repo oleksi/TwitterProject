@@ -12,7 +12,7 @@ namespace NetworkWithModels
 {
 	class Program
 	{
-		const int c_NetworkingModelId = 21;
+		const int c_NetworkingModelId = 24;
 
 		static void Main(string[] args)
 		{
