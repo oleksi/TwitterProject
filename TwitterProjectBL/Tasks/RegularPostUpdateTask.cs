@@ -11,9 +11,10 @@ namespace TwitterProjectBL.Tasks
 {
 	public class RegularPostUpdateTask : BaseTask
 	{
-		private PostUpdateRepository m_DataRepository = null;
+		private PromoPostRepository m_DataRepository = null;
 
-		public RegularPostUpdateTask(PostUpdateRepository dataRepository, TwitterService twitterService, Model model) : base(twitterService, model)
+		public RegularPostUpdateTask(PromoPostRepository dataRepository, TwitterService twitterService, Model model)
+			: base(twitterService, model)
 		{
 			m_DataRepository = dataRepository;
 
@@ -34,14 +35,14 @@ namespace TwitterProjectBL.Tasks
 
 		public override void Run()
 		{
-			PostUpdate newPostUpdate = m_DataRepository.GetNextPostUpdateForModel(m_Model, PostUpdateType.Regular);
-			m_TwitterService.SendTweet(new SendTweetOptions() { Status = newPostUpdate.PostText });
+			PromoPost newPromoPost = m_DataRepository.GetNextPromoPostForModel(m_Model, AffiliateOffers.None);
+			m_TwitterService.SendTweet(new SendTweetOptions() { Status = newPromoPost.PromoPostText });
 
 			TwitterError error = m_TwitterService.Response.Error;
 			if (error != null)
 				throw new TwitterProjectException(m_Model.Id.Value, error);
 
-			m_DataRepository.LogPostUpdateAsPublishedForModel(newPostUpdate, m_Model, PostUpdateType.Regular);
+			m_DataRepository.LogPromoPostAsPublishedForModel(newPromoPost, m_Model);
 		}
 	}
 }

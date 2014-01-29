@@ -49,7 +49,7 @@ namespace TwitterProjectBL
 			if (m_Model.RegularPostUpdateTask == true)
 			{
 				RegularPostUpdateTask regularPostUpdateTask = new RegularPostUpdateTask(
-																			new PostUpdateRepository(),
+																			new PromoPostRepository(),
 																			m_TwitterService,
 																			m_Model
 															);
@@ -68,7 +68,7 @@ namespace TwitterProjectBL
 				}
 
 				OnlinePostUpdateTask onlinePostUpdateTask = new OnlinePostUpdateTask(
-																			new PostUpdateRepository()
+																			new PromoPostRepository()
 																			, m_TwitterService
 																			, m_Model
 																			, streamateXMLRequest
