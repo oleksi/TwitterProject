@@ -13,13 +13,12 @@ namespace TestConsoleClient
 	{
 		static void Main(string[] args)
 		{
-			SessionProvider.RebuildSchema();
+			//SessionProvider.RebuildSchema();
 
-			ModelRepository modelRepo = new ModelRepository();
-			Model model = modelRepo.GetModelById(1);
+			PromoPostRepository repo = new PromoPostRepository();
 
-			FriendProspect nextFriendProspect = modelRepo.GetNextFriendProspectToFollowForModel(model);
-			//modelRepo.LogFriendProspectAsFriendForModel(model, nextFriendProspect);
+			PromoPost promoPost = repo.GetNextPromoPostForModel(new Model { Id = 19 }, AffiliateOffers.None);
+			repo.LogPromoPostAsPublishedForModel(promoPost, new Model { Id = 19 });
 
 		}
 	}
