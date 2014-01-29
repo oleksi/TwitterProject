@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AffiliateOfferUrl.cs" />
     <Compile Include="FriendProspect.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="ModelFriendsLog.cs" />

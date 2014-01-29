@@ -79,7 +79,11 @@ namespace TwitterProjectBL.Tasks
 				else
 					twitterMessage += " {0}";
 
-				twitterMessage = String.Format(twitterMessage, m_Model.LiveChatURL);
+				string liveChatURL = m_Model.GetAffiliateOfferUrl(AffiliateOffers.WebcamSites);
+				if (String.IsNullOrEmpty(liveChatURL) == true)
+					throw new ApplicationException(String.Format("Live Chat Url is not defined for Model Id = {0}", m_Model.Id));
+
+				twitterMessage = String.Format(twitterMessage, liveChatURL);
 
 				//publishing online status message
 				m_TwitterService.SendTweet(new SendTweetOptions() { Status = twitterMessage });

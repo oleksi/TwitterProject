@@ -13,7 +13,13 @@
 		<property name="TwitterConsumerSecret" not-null="true"></property>
 		<property name="TwitterAccessToken" not-null="true"></property>
 		<property name="TwitterAccessTokenSecret" not-null="true"></property>
-		<property name="LiveChatURL" not-null="true"></property>
+		<bag name="AffiliateOfferUrls" lazy="false">
+			<key column="ModelId"></key>
+			<composite-element class="AffiliateOfferUrl">
+				<property name="AffiliateOffer" column="AffiliateOfferId"></property>
+				<property name="Url" column="AffiliateOfferUrl"></property>
+			</composite-element>
+		</bag>
 		<property name="OnlineStatusXMLFeed" not-null="true"></property>
 		<property name="FriendFinder_MinutesToWaitMin" not-null="true"></property>
 		<property name="FriendFinder_MinutesToWaitMax" not-null="true"></property>

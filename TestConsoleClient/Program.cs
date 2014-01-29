@@ -15,11 +15,10 @@ namespace TestConsoleClient
 		{
 			//SessionProvider.RebuildSchema();
 
-			PromoPostRepository repo = new PromoPostRepository();
+			ModelRepository modelRepo = new ModelRepository();
+			Model model = modelRepo.GetModelById(19);
 
-			PromoPost promoPost = repo.GetNextPromoPostForModel(new Model { Id = 19 }, AffiliateOffers.None);
-			repo.LogPromoPostAsPublishedForModel(promoPost, new Model { Id = 19 });
-
+			string url = model.GetAffiliateOfferUrl(AffiliateOffers.SizeGenetics);
 		}
 	}
 }
