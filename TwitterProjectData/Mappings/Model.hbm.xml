@@ -29,6 +29,8 @@
 		<property name="RegularPost_NoShowEndTime" not-null="true"></property>
 		<property name="RegularPost_NextPublishMinMinute" not-null="true"></property>
 		<property name="RegularPost_NextPublishMaxMinute" not-null="true"></property>
+		<property name="PromoPost_NextPublishMinMinute" not-null="true"></property>
+		<property name="PromoPost_NextPublishMaxMinute" not-null="true"></property>
 		<property name="OnlinePost_CheckOnlineStatusIntervalMins" not-null="true"></property>
 		<property name="OnlinePost_OnlinePostsIntervalMins" not-null="true"></property>
 		<property name="FollowFriend_FollowIntervalMinMinutes" not-null="true"></property>
@@ -37,6 +39,7 @@
 		<property name="FollowFriend_UnfollowIntervalMaxMinutes" not-null="true"></property>
 		<property name="FriendFinderTask" not-null="true"></property>
 		<property name="RegularPostUpdateTask" not-null="true"></property>
+		<property name="PromoPostUpdateTask" not-null="true"></property>
 		<property name="OnlinePostUpdateTask" not-null="true"></property>
 		<property name="FollowFriendProspectsTask" not-null="true"></property>
 		<property name="UnfollowFriendTask" not-null="true"></property>

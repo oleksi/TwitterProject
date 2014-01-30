@@ -54,6 +54,7 @@
     <Compile Include="ModelWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\BaseTask.cs" />
+    <Compile Include="Tasks\PromoPostUpdateTask.cs" />
     <Compile Include="Tasks\FollowFriendProspectsTask.cs" />
     <Compile Include="Tasks\FriendFinderTask.cs" />
     <Compile Include="Tasks\ITask.cs" />

@@ -91,6 +91,7 @@
     <EmbeddedResource Include="Mappings\PromoPostLog.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="SQL Scripts\AffiliateOffersTask_BuildScript.txt" />
     <Content Include="SQL Scripts\Development-Data.txt" />
     <Content Include="SQL Scripts\PostUpdates.txt" />
     <Content Include="SQL Scripts\StoredProcedures.txt" />

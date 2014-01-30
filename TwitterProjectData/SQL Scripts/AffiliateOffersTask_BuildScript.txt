@@ -1,0 +1,158 @@
+UPDATE [dbo].[Models]
+   SET [PromoPost_NextPublishMinMinute] = 180
+      ,[PromoPost_NextPublishMaxMinute] = 300
+
+UPDATE [dbo].[Models]
+   SET [PromoPostUpdateTask] = 1
+   where modelid < 6
+
+UPDATE [dbo].[Models]
+   SET [PromoPostUpdateTask] = 0
+   where modelid >5
+ 
+
+ INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,1
+           ,'http://goo.gl/4PT7H2')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,2
+           ,'http://goo.gl/B44vUN')
+
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,3
+           ,'http://goo.gl/kmRhpP')
+
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,4
+           ,'http://goo.gl/fOnAAh')
+
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,5
+           ,'http://goo.gl/mrQTYl')
+
+insert into PromoPosts values(3, 'OMG! My boyfriend''s cock is so huge now! It wasn''t before, trust me lol This is what he used  ')
+insert into PromoPosts values(3, 'I don''t trust any of those so-called penis enlargement products. Except this one Trust me, it works ;)  ')insert into PromoPosts values(3, 'I really hate a small cock. You won''t be able to fuck me until you try this: ')insert into PromoPosts values(3, 'I''ve been a cam whore for 4 years and I''ve seen too many small dicks. Make yours bigger for me with this ')insert into PromoPosts values(3, 'Small dick? I won''t touch it unless it''s at least 8 inches. Try this to make yours bigger ')
+insert into PromoPosts values(3, 'LOL your cock is how small? Honey, I won''t even look at it until you use this to make yours bigger ')
+insert into PromoPosts values(3, 'My ex-boyfriend''s cock was way too small for me. Want to please me? Try this ')
+insert into PromoPosts values(3, 'Think your cock is big enough for hot chicks like me? Think again. Use this to make sure ')
+insert into PromoPosts values(3, 'Guys, I won''t even think about fucking you until you use this product to make that dick big enough for me ')
+insert into PromoPosts values(3, 'Think your dick is big enough to handle me? Think again. Use this to enhance that cock so we can fuck ')
+insert into PromoPosts values(3, 'Emabarassed about yoru tiny member? Don''t be! Use this to have a bigger, thicker cock now! ')
+insert into PromoPosts values(3, 'Shy because your dick is tiny? It doesn''t have to be. Girls like me like guys with big dicks. Get yours here ')
+insert into PromoPosts values(3, 'Is your dick smaller than 8.7 inches? Then you NEED to use this product right now! ')
+insert into PromoPosts values(3, 'Any cock smaller than 8 inches I won''t even touch. Nor will my hot girlfriends. Get a big cock now ')
+insert into PromoPosts values(3, 'I see small dicks every day and I can''t stand them. Get yours bigger and better fast and easy by using this product that works! ')
+insert into PromoPosts values(3, 'Think you have a big dick? If it''s not even 8 inches you need to use this now ')
+insert into PromoPosts values(3, 'Porn stars and cam girls like me only fuck huge cocks so get yours big and ready now with this product that works. ')
+insert into PromoPosts values(3, 'Teeny tiny member? You CAN be bigger and get all the hot chicks you want with this! ')
+insert into PromoPosts values(3, 'My ex had a decent sized cock but it wasn''t 9 inches which is what I need. Make yours bigger than 8 inches now ')
+insert into PromoPosts values(3, 'I need a cock that''s at LEAST 9 inches long. Think yours measures up? Try this ')
+insert into PromoPosts values(3, 'Want to extend your penis and make it thicker so you can get laid? You need this product today ')
+insert into PromoPosts values(3, 'Extend your dick, make it bigger and make it thicker and get laid daily! Order this now ')
+insert into PromoPosts values(3, 'Hot chicks like me only go for guys with large penises. Is yours going to measure up? ')
+insert into PromoPosts values(3, 'Hot girls love a nice big dick. Get yours ready for the best sex of your life with this amazing product ')
+insert into PromoPosts values(3, 'Pron stars and slutty women agree: This product makes their man''s cock huge! ')
+insert into PromoPosts values(3, 'SizeGenetics has a revolutionary product to give you the biggest penis you can think of. Go here to try ')
+insert into PromoPosts values(3, 'SizeGenetics has created the perfect product to give you the huge penis every woman desires. Check it out ')
+insert into PromoPosts values(3, 'Every women desires a huge penis on her man. Pleasure your woman now with this great product ')
+insert into PromoPosts values(3, 'Think your member has what it takes to please the ladies? You better make sure by going here ')
+insert into PromoPosts values(3, 'Relationships are hard enough. Don''t let your small penis end yours. Get a bigger penis now ')
+insert into PromoPosts values(3, 'In this economy, every women still agrees it''s worth it to spend money on making your cock bigger. Try this now ')
+insert into PromoPosts values(3, 'Non-surgical options ARE available for extreme penis enlargement. This is breaking news. Check it out here  ')
+insert into PromoPosts values(3, 'Think you need a bigger penis to make your woman happy? It''s true. Get a bigger member here ')
+insert into PromoPosts values(3, 'Penis enlargement doesn''t have to include surgery. Go here for a bigger penis with no surgery ')
+insert into PromoPosts values(3, 'Penises come in every size but only the big ones get the best pussy. Need more pussy? Go here ')
+insert into PromoPosts values(3, 'Not getting enough pussy? You can laid laid way more with a bigger penis. Get that here ')
+insert into PromoPosts values(3, 'Penis enlargement is now available with NO surgery! Get that bigger penis now!  ')
+insert into PromoPosts values(3, 'Get your penis enlarged asap with this revolutionary product and FREE shipping! ')
+insert into PromoPosts values(3, 'Order this penis enlargement product and have a bigger penis in a few days. Free shipping now ')
+insert into PromoPosts values(3, 'Is your wife satisfied in bed? Don''t be so sure. Make your wife happy with a bigger member and get free shipping ')
+insert into PromoPosts values(3, 'Did your girlfriend leave you because you don''t "measure up?" Get a bigger dick now with free shipping  ')
+insert into PromoPosts values(3, 'Use this discount code to get a bigger penis is just days with NO surgery! Click here now ')
+insert into PromoPosts values(3, 'Think your penis isn''t satisfying your wife? You''re probably right. Make her happy by clicking here ')
+insert into PromoPosts values(3, 'Do you keep striking out with the ladies? Get laid more with a bigger cock. Click here! Free shipping! ')
+insert into PromoPosts values(3, 'I have seen my share of big cocks and I only suck and fuck the biggest. Make yours bigger with no surgery now ')
+insert into PromoPosts values(3, 'My pussy needs a huge cock that''s at least 8 or 9 inches. Does your dick measure up? Click here for more info  ')
+insert into PromoPosts values(3, 'Want a bigger and better penis with no surgery? This product works! Free shipping! Get laid more often with this  ')
+insert into PromoPosts values(3, 'The ONLY penis extender company that works and offer free shipping. Click here! ')
+insert into PromoPosts values(3, 'Hot sexy women love big, thick penises. Make yours bigger and get laid with the hottest bitches now ')
+insert into PromoPosts values(3, 'SizeGenetics is now offering FREE shipping for their penis enlargement product that works fast! Click here to enlarge your member ')
+insert into PromoPosts values(3, 'Need a bigger piece of meat fast? Click here and get free shipping on SizeGenetics'' product that works! ')
+insert into PromoPosts values(3, 'I love sucking cock but it has to be nice and big. Want your dick sucked more often? Make it bigger! ')
+insert into PromoPosts values(3, 'You don''t have to be stuck with the small penis you were born with. Go here to change yourself for the better ')
+insert into PromoPosts values(3, 'REAL testimonials prove this penis extender works with NO surgery! Click here ')
+insert into PromoPosts values(3, 'Don''t trust other penis enlargement products. This one is backed by real testimonials. Free shipping too! ')
+insert into PromoPosts values(3, 'Me and my girlfriend''s talk about a nice big cock but laugh about small ones. Don''t get laughed at.  ')
+insert into PromoPosts values(3, 'Does your small penis keep getting laughed at by the ladies? Make it bigger now with no surgery. ')
+insert into PromoPosts values(3, 'Get a 9 inch penis now with no surgery. This really works! I have seen the proof. Click here for a big cock ')
+insert into PromoPosts values(3, 'No surgery. Free shipping. Get laid more! Your wife won''t believe her eyes after this. Real penis enlargement  ')
+insert into PromoPosts values(3, 'Guys with big cocks get laid more often. That''s a fact! Get laid more now by clicking here and get free shipping. ')
+insert into PromoPosts values(3, 'Need to have sex more often? Stop wanking yourself and get laid with a bigger cock here ')
+insert into PromoPosts values(3, 'Get REAL results. This penis enlargement product is backed by testimonials. SizeGenetics delivers! ')
+insert into PromoPosts values(3, 'Man with tiny cock makes it 10 inches with NO surgery! Get the info here so you can be next ')
+insert into PromoPosts values(3, 'Small penis=no sex. Get a bigger penis asap and have more sex with the hottest chicks.  ')
+insert into PromoPosts values(3, 'This penis enlargement product almost guarantees more hot sex! Free shipping click now ')
+insert into PromoPosts values(3, 'Feel like a loser because of your small cock? Change your life for the better now with no surgery! ')
+insert into PromoPosts values(3, 'My girlfriends and I agree-a man with a big dick makes us cum harder. Want to be that man? ')
+insert into PromoPosts values(3, '4 inch cocks don''t get much action. Double your length with no surgery! Click here now ')
+insert into PromoPosts values(3, 'Little dicks get laughs, not licks. Enlarge your penis quickly and easily with SizeGenetics.  ')
+insert into PromoPosts values(3, 'Getting a lot of laughs and no licks? You need a bigger penis. Make it happen now without surgery.  ')
+insert into PromoPosts values(3, 'The most comfortable penis enlargement device in the world! Free shipping. Click here ')
+insert into PromoPosts values(3, 'Make your penis bigger with comfort and ease. Designed and backed by doctors. Free shipping if you click now ')
+insert into PromoPosts values(3, 'Trust me. Girls talk about their man''s cock. Make sure yours is worthy by clicking here ')
+insert into PromoPosts values(3, 'Most women agree that a bigger cock is so much better. Make yours bigger with no surgery ')
+insert into PromoPosts values(3, 'SizeGenetics'' penis extender is so comfortable. Created by doctors and backed by real reviews. Try it now with free shipping.  ')
+insert into PromoPosts values(3, 'Get the big penis you''ve always dreamed of with no surgery. Most comfortable device in the world! ')
+insert into PromoPosts values(3, 'Real before and after penis enlargement pictures. See the proof for yourself here ')
+insert into PromoPosts values(3, 'All penis enlargement product review sites are saying the same thing: SizeGenetics works! Find out for yourself  ')
+insert into PromoPosts values(3, 'As a young hot chick I love having sex. But if you have a tiny member, it''s off. Make your penis bigger here ')
+insert into PromoPosts values(3, 'Check any penis enlargement product review site and you''ll see that SizeGenetics really works! Read the reviews here ')
+insert into PromoPosts values(3, 'Mmm I love sucking and fucking a nice big dick. Want to please me? Make your dick bigger and thicker easily  ')
+insert into PromoPosts values(3, 'With SizeGenetic''s innovative comfort, your cock will get bigger easily. Guess how much you''re going to get laid now ;) ')
+insert into PromoPosts values(3, 'SizeGenetic''s penis enlargement system is the best and most comfortable money can buy! Watch your penis grow ')
+insert into PromoPosts values(3, 'Dramatically increase your chances of getting laid with hot chicks by purchasing this enlargement product now ')
+insert into PromoPosts values(3, 'Need a bigger penis to satisfy your woman? This is the most comfortable way. No surgery! ')
+insert into PromoPosts values(3, 'Get quicker gains and results with SizeGenetic''s tension 2300g. Extend your penis by inches! Free shipping.  ')
+insert into PromoPosts values(3, 'Strengthen your erections, enlarge and elongate your penis easily and with comfort. Click here for more info ')
+insert into PromoPosts values(3, 'Shooting your "gun" too early? Make her happier in bed with SizeGenetic''s comfortable enlargement system.  ')
+insert into PromoPosts values(3, 'Improve your confidence in bed and your odds of getting laid. Read real testimonials and make your penis bigger. ')
+insert into PromoPosts values(3, 'This penis enlargement product will change history. Read real reviews now then order with free shipping! ')
+insert into PromoPosts values(3, 'I only fuck guys with huge cocks. Does yours not measure up? Change that now. Click here ;)  ')
+insert into PromoPosts values(3, 'Give her bigger and better orgasms and control yours with SizeGenetics'' comfortable enlargement system ')
+insert into PromoPosts values(3, 'Make your penis bigger now. Money back guarantee! Your woman will never be happier once she sees your new length ')
+insert into PromoPosts values(3, 'If you don''t own this penis enlargement product, you''re missing out! Free shipping and money back guarantee! ')
+insert into PromoPosts values(3, 'Make the ladies beg for more. Your penis can be bigger without surgery! Click here to read the reviews ')
+insert into PromoPosts values(3, 'Order your life-changing penis enlargement system with discrete packaging and free shipping! ')
+insert into PromoPosts values(3, 'Start extending your penis and prolonging your erections quickly and easily. Read these real reviews! ')
+insert into PromoPosts values(3, 'Inferior products DON''T work! THIS does! Get a bigger penis fast with discrete shipping and money back guarantee! ')
+insert into PromoPosts values(3, 'Women agree-this product works and makes them orgasm bigger and better! Make your woman scream. Click here ')
+insert into PromoPosts values(3, 'My boyfriend lasts so much longer and makes me orgasm stronger after he used SizeGenetics. ;) More reviews here ')

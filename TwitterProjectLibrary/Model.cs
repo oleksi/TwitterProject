@@ -24,6 +24,8 @@ namespace TwitterProjectModel
 		public virtual string RegularPost_NoShowEndTime { get; set; }
 		public virtual int RegularPost_NextPublishMinMinute { get; set; }
 		public virtual int RegularPost_NextPublishMaxMinute { get; set; }
+		public virtual int PromoPost_NextPublishMinMinute { get; set; }
+		public virtual int PromoPost_NextPublishMaxMinute { get; set; }
 		public virtual int OnlinePost_CheckOnlineStatusIntervalMins { get; set; }
 		public virtual int OnlinePost_OnlinePostsIntervalMins { get; set; }
 		public virtual int FollowFriend_FollowIntervalMinMinutes { get; set; }
@@ -32,6 +34,7 @@ namespace TwitterProjectModel
 		public virtual int FollowFriend_UnfollowIntervalMaxMinutes { get; set; }
 		public virtual bool FriendFinderTask { get; set; }
 		public virtual bool RegularPostUpdateTask { get; set; }
+		public virtual bool PromoPostUpdateTask { get; set; }
 		public virtual bool OnlinePostUpdateTask { get; set; }
 		public virtual bool FollowFriendProspectsTask { get; set; }
 		public virtual bool UnfollowFriendTask { get; set; }

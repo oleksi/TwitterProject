@@ -56,6 +56,16 @@ namespace TwitterProjectBL
 				Tasks.Add(regularPostUpdateTask);
 			}
 
+			if (m_Model.PromoPostUpdateTask == true)
+			{
+				PromoPostUpdateTask promoPostUpdateTask = new PromoPostUpdateTask(
+																			new PromoPostRepository(),
+																			m_TwitterService,
+																			m_Model
+															);
+				Tasks.Add(promoPostUpdateTask);
+			}
+
 			if (m_Model.OnlinePostUpdateTask == true)
 			{
 				string streamateXMLRequest = "";
