@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace TwitterProjectModel
 {
-	public class RegularPostUpdateLog : PostUpdateLog
+	public class AffiliateOfferUrl
 	{
-		public virtual RegularPostUpdate RegularPostUpdate { get; set; }
+		public virtual AffiliateOffers AffiliateOffer { get; set; }
+		public virtual string Url { get; set; }
 	}
 }

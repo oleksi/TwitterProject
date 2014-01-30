@@ -16,11 +16,11 @@ namespace TwitterProjectBL.Tasks
 	{
 		private const string C_URL_Placeholder = "<----URL--->";
 
-		private PostUpdateRepository m_DataRepository = null;
+		private PromoPostRepository m_DataRepository = null;
 		private string m_StreamateXMLRequest;
 		private bool m_IsCurrentlyOnline = false;
 
-		public OnlinePostUpdateTask(PostUpdateRepository dataRepository, TwitterService twitterService, Model model, string streamateXMLRequest)
+		public OnlinePostUpdateTask(PromoPostRepository dataRepository, TwitterService twitterService, Model model, string streamateXMLRequest)
 			: base(twitterService, model)
 		{
 			m_DataRepository = dataRepository;
@@ -72,14 +72,18 @@ namespace TwitterProjectBL.Tasks
 
 			if (isModelOnline == true)
 			{
-				PostUpdate newPostUpdate = m_DataRepository.GetNextPostUpdateForModel(m_Model, PostUpdateType.Online);
-				string twitterMessage = newPostUpdate.PostText;
+				PromoPost newPromoPost = m_DataRepository.GetNextPromoPostForModel(m_Model, AffiliateOffers.WebcamSites);
+				string twitterMessage = newPromoPost.PromoPostText;
 				if (twitterMessage.Contains(C_URL_Placeholder))
 					twitterMessage = twitterMessage.Replace(C_URL_Placeholder, "{0}");
 				else
 					twitterMessage += " {0}";
 
-				twitterMessage = String.Format(twitterMessage, m_Model.LiveChatURL);
+				string liveChatURL = m_Model.GetAffiliateOfferUrl(AffiliateOffers.WebcamSites);
+				if (String.IsNullOrEmpty(liveChatURL) == true)
+					throw new ApplicationException(String.Format("Live Chat Url is not defined for Model Id = {0}", m_Model.Id));
+
+				twitterMessage = String.Format(twitterMessage, liveChatURL);
 
 				//publishing online status message
 				m_TwitterService.SendTweet(new SendTweetOptions() { Status = twitterMessage });
@@ -88,7 +92,7 @@ namespace TwitterProjectBL.Tasks
 				if (error != null)
 					throw new TwitterProjectException(m_Model.Id.Value, error);
 
-				m_DataRepository.LogPostUpdateAsPublishedForModel(newPostUpdate, m_Model, PostUpdateType.Online);
+				m_DataRepository.LogPromoPostAsPublishedForModel(newPromoPost, m_Model);
 
 				m_IsCurrentlyOnline = true;
 			}

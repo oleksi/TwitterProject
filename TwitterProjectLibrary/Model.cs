@@ -14,7 +14,7 @@ namespace TwitterProjectModel
 		public virtual string TwitterConsumerSecret { get; set; }
 		public virtual string TwitterAccessToken { get; set; }
 		public virtual string TwitterAccessTokenSecret { get; set; }
-		public virtual string LiveChatURL { get; set; }
+		public virtual IList<AffiliateOfferUrl> AffiliateOfferUrls { get; set; }
 		public virtual string OnlineStatusXMLFeed { get; set; }
 		public virtual int FriendFinder_MinutesToWaitMin { get; set; }
 		public virtual int FriendFinder_MinutesToWaitMax { get; set; }
@@ -37,5 +37,15 @@ namespace TwitterProjectModel
 		public virtual bool UnfollowFriendTask { get; set; }
 		public virtual string From { get; set; }
 		public virtual bool IsActive { get; set; }
+
+		public virtual string GetAffiliateOfferUrl(AffiliateOffers affiliateOffer)
+		{
+			AffiliateOfferUrl affOfferUrl = AffiliateOfferUrls.Where(aa => aa.AffiliateOffer == affiliateOffer).SingleOrDefault();
+
+			if (affOfferUrl != null)
+				return affOfferUrl.Url;
+			else
+				return null;
+		}
 	}
 }

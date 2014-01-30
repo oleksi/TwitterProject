@@ -13,14 +13,12 @@ namespace TestConsoleClient
 	{
 		static void Main(string[] args)
 		{
-			SessionProvider.RebuildSchema();
+			//SessionProvider.RebuildSchema();
 
 			ModelRepository modelRepo = new ModelRepository();
-			Model model = modelRepo.GetModelById(1);
+			Model model = modelRepo.GetModelById(19);
 
-			FriendProspect nextFriendProspect = modelRepo.GetNextFriendProspectToFollowForModel(model);
-			//modelRepo.LogFriendProspectAsFriendForModel(model, nextFriendProspect);
-
+			string url = model.GetAffiliateOfferUrl(AffiliateOffers.SizeGenetics);
 		}
 	}
 }

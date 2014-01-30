@@ -4,11 +4,12 @@
                    assembly="TwitterProjectModel" 
                    namespace="TwitterProjectModel">
  
-  <class name="RegularPostUpdate" table="RegularPostUpdates">
-		<id name="Id" column="RegularPostUpdateId">
+  <class name="PromoPost" table="PromoPosts">
+		<id name="Id" column="PromoPostId">
 			<generator class="identity"></generator>
 		</id>
-		<property name="PostText" not-null="true"></property>
+		<property name="AffiliateOffer" column="AffiliateOfferId" not-null="true"></property>
+		<property name="PromoPostText" not-null="true"></property>
 	</class>
   
 </hibernate-mapping>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="TwitterProjectModel"
+                   namespace="TwitterProjectModel">
+
+	<class name="PromoPostLog" table="PromoPostLogs">
+		<id name="Id" column="PromoPostLogId">
+			<generator class="identity"></generator>
+		</id>
+		<many-to-one class="Model" name="Model" column="ModelId" not-null="true" />
+		<many-to-one class="PromoPost" name="PromoPost" column="PromoPostId" not-null="true" />
+		<property name="LastPublishedDate" not-null="true"></property>
+	</class>
+
+</hibernate-mapping>

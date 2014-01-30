@@ -39,17 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AffiliateOfferUrl.cs" />
     <Compile Include="FriendProspect.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="ModelFriendsLog.cs" />
     <Compile Include="MonitorUser.cs" />
-    <Compile Include="OnlinePostUpdate.cs" />
-    <Compile Include="OnlinePostUpdateLog.cs" />
-    <Compile Include="PostUpdate.cs" />
-    <Compile Include="PostUpdateLog.cs" />
+    <Compile Include="PromoPost.cs" />
+    <Compile Include="PromoPostLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegularPostUpdate.cs" />
-    <Compile Include="RegularPostUpdateLog.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
