@@ -59,6 +59,178 @@ INSERT INTO [dbo].[AffiliateOfferUrls]
            ,5
            ,'http://goo.gl/mrQTYl')
 
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,6
+           ,'http://goo.gl/pNYHXp')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,7
+           ,'http://goo.gl/DdJMyQ')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,8
+           ,'http://goo.gl/OZU09a')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,9
+           ,'http://goo.gl/3RG2Ks')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,10
+           ,'http://goo.gl/md9dO5')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,11
+           ,'http://goo.gl/xy1bjZ')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,12
+           ,'http://goo.gl/tfPio5')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,13
+           ,'http://goo.gl/0imfQ4')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,14
+           ,'http://goo.gl/h6LKTo')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,15
+           ,'http://goo.gl/4lQKh6')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,16
+           ,'http://goo.gl/nVWuON')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,17
+           ,'http://goo.gl/zLQgXh')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,18
+           ,'http://goo.gl/ZZGvYU')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,19
+           ,'http://goo.gl/KKzsZt')
+
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,20
+           ,'http://goo.gl/BtufQb')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,21
+           ,'http://goo.gl/YPuQ9D')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,22
+           ,'http://goo.gl/eaqOSX')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,23
+           ,'http://goo.gl/1Qs12X')
+
+INSERT INTO [dbo].[AffiliateOfferUrls]
+           ([AffiliateOfferId]
+           ,[ModelId]
+           ,[AffiliateOfferUrl])
+     VALUES
+           (3
+           ,24
+           ,'http://goo.gl/bHrUqr')
+
 insert into PromoPosts values(3, 'OMG! My boyfriend''s cock is so huge now! It wasn''t before, trust me lol This is what he used  ')
 insert into PromoPosts values(3, 'I don''t trust any of those so-called penis enlargement products. Except this one Trust me, it works ;)  ')insert into PromoPosts values(3, 'I really hate a small cock. You won''t be able to fuck me until you try this: ')insert into PromoPosts values(3, 'I''ve been a cam whore for 4 years and I''ve seen too many small dicks. Make yours bigger for me with this ')insert into PromoPosts values(3, 'Small dick? I won''t touch it unless it''s at least 8 inches. Try this to make yours bigger ')
 insert into PromoPosts values(3, 'LOL your cock is how small? Honey, I won''t even look at it until you use this to make yours bigger ')
