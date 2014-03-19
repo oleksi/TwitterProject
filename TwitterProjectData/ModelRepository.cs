@@ -87,8 +87,13 @@ namespace TwitterProjectData
 			using (var session = getSession())
 			{
 				ModelFriendsLog modelFriendsLog = session.QueryOver<ModelFriendsLog>().Where(mfl => mfl.Model.Id == model.Id && mfl.IsActive == true).OrderBy(mfl => mfl.DateFriended).Asc.Take(1).SingleOrDefault();
-				string userName = modelFriendsLog.Friend.UserName; //need to prevent lazy initialization
-				return modelFriendsLog;
+				if (modelFriendsLog != null)
+				{
+					string userName = modelFriendsLog.Friend.UserName; //need to prevent lazy initialization
+					return modelFriendsLog;
+				}
+				else 
+					return null;
 			}
 		}
 
