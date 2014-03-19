@@ -38,11 +38,11 @@ namespace TwitterProjectBL.Tasks
 			PromoPost newPromoPost = m_DataRepository.GetNextPromoPostForModel(m_Model, AffiliateOffers.None);
 			m_TwitterService.SendTweet(new SendTweetOptions() { Status = newPromoPost.PromoPostText });
 
+			m_DataRepository.LogPromoPostAsPublishedForModel(newPromoPost, m_Model);
+
 			TwitterError error = m_TwitterService.Response.Error;
 			if (error != null)
 				throw new TwitterProjectException(m_Model.Id.Value, error);
-
-			m_DataRepository.LogPromoPostAsPublishedForModel(newPromoPost, m_Model);
 		}
 	}
 }

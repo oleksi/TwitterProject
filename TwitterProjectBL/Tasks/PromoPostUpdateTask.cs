@@ -51,11 +51,11 @@ namespace TwitterProjectBL.Tasks
 			twitterMessage = String.Format(twitterMessage, affiliateURL);
 			m_TwitterService.SendTweet(new SendTweetOptions() { Status = twitterMessage });
 
+			m_DataRepository.LogPromoPostAsPublishedForModel(newPromoPost, m_Model);
+
 			TwitterError error = m_TwitterService.Response.Error;
 			if (error != null)
 				throw new TwitterProjectException(m_Model.Id.Value, error);
-
-			m_DataRepository.LogPromoPostAsPublishedForModel(newPromoPost, m_Model);
 		}
 	}
 }
