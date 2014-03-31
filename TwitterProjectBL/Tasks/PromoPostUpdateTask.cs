@@ -37,7 +37,7 @@ namespace TwitterProjectBL.Tasks
 
 		public override void Run()
 		{
-			PromoPost newPromoPost = m_DataRepository.GetNextPromoPostForModel(m_Model, AffiliateOffers.SizeGenetics);
+			PromoPost newPromoPost = m_DataRepository.GetNextPromoPostForModel(m_Model, AffiliateOffers.Anastasia);
 			string twitterMessage = newPromoPost.PromoPostText;
 			if (twitterMessage.Contains(C_URL_Placeholder))
 				twitterMessage = twitterMessage.Replace(C_URL_Placeholder, "{0}");

@@ -10,7 +10,8 @@ namespace TwitterProjectModel
 	{
 		None = 1,
 		WebcamSites = 2,
-		SizeGenetics = 3
+		SizeGenetics = 3,
+		Anastasia = 1001
 	}
 
 	public class PromoPost
