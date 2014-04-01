@@ -44,7 +44,7 @@ namespace TwitterProjectBL.Tasks
 			else
 				twitterMessage += " {0}";
 
-			string affiliateURL = m_Model.GetAffiliateOfferUrl(AffiliateOffers.SizeGenetics);
+			string affiliateURL = m_Model.GetAffiliateOfferUrl(AffiliateOffers.Anastasia);
 			if (String.IsNullOrEmpty(affiliateURL) == true)
 				throw new ApplicationException(String.Format("Affiliate Url is not defined for Model Id = {0}", m_Model.Id));
 
