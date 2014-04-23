@@ -37,14 +37,14 @@ namespace TwitterProjectBL.Tasks
 
 		public override void Run()
 		{
-			PromoPost newPromoPost = m_DataRepository.GetNextPromoPostForModel(m_Model, AffiliateOffers.Anastasia);
+			PromoPost newPromoPost = m_DataRepository.GetNextPromoPostForModel(m_Model, AffiliateOffers.SizeGenetics);
 			string twitterMessage = newPromoPost.PromoPostText;
 			if (twitterMessage.Contains(C_URL_Placeholder))
 				twitterMessage = twitterMessage.Replace(C_URL_Placeholder, "{0}");
 			else
 				twitterMessage += " {0}";
 
-			string affiliateURL = m_Model.GetAffiliateOfferUrl(AffiliateOffers.Anastasia);
+			string affiliateURL = m_Model.GetAffiliateOfferUrl(AffiliateOffers.SizeGenetics);
 			if (String.IsNullOrEmpty(affiliateURL) == true)
 				throw new ApplicationException(String.Format("Affiliate Url is not defined for Model Id = {0}", m_Model.Id));
 
